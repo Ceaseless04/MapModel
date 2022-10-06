@@ -1,0 +1,27 @@
+.container{
+    color: white;
+    height: 10vh;
+    text-align: center;
+    width: 60vw;
+    position: fixed;
+    
+    left: 50%;
+    transform: translateX(-30vw);
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.hidden{
+    /* display: none; */
+    bottom: -20vh;
+    
+    transition-duration: 2s;
+    transition-property: bottom;
+}
+.transformed {
+    bottom: 5vh;
+    transition-duration: 2s;
+    transition-property: bottom;
+}
