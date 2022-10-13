@@ -6,14 +6,14 @@ const auth=()=>{
             {/* step one: email input */}
             <div>
                 <form>
-                    <input></input>
+                    <input type="text"></input>
                     <button type="submit"></button>
                 </form>
             </div>
            {/* step two: image input */}
            <div>
                 <form>
-                    <input></input>
+                    <input type="image"></input>
                     {/* submit everything to firebase on this step */}
                     <button type="submit"></button>
                 </form>
