@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Page</title>
+    <link rel="stylesheet" href="auth_style.css">
+</head>
+<body>
+    <div id="error"></div>
+    <div class="card">
+        <h1>Login Page</h1>
+        <form name="auth" action="post" id="form">
+        <div class="txt_field">
+            <input type="text" id="email" required>
+            <span id="error"></span>
+            <label for="email">Email</label>
+        </div>
+            <br>
+            <br>
+        <a href="/MapModel/auth-Page/auth-Form/form_index.html">
+            <button onClick="checkEmail()" type="submit" class="submit-button">Submit</button>
+        </a>
+        </form>
+        <script defer src="auth_script.js"></script>
+    </div>
+</body>
+</html>
