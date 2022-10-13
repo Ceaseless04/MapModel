@@ -1,6 +1,10 @@
+import  styles  from '../styles/Side.module.scss'
+
 const SideNav=()=>{
     return(
-        <div></div>
+        <div className={styles.container}>
+
+        </div>
     )
 }
 
