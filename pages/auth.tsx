@@ -120,7 +120,7 @@ const Authentication = () => {
           <h1>add information</h1>
           <input type="text" placeholder="name" name="name" id="name"></input>
           <select name="major" id="major">
-            {data["MAIN"].map((val)=><option value={val['Major Name']}>{val["Major Name"]}</option>)}
+            {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
           <input type="text" placeholder="city" name="city" id="city"></input>
           <input
