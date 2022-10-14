@@ -1,0 +1,16 @@
+.parent{
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px
+}
+.main{
+    margin: 0px;
+    padding: 0px;
+}
+.right{
+    position: fixed;
+    bottom: 1vw;
+    right: 1vw;
+    display: grid;
+}

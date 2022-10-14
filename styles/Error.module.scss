@@ -18,11 +18,13 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    p{
+        font-size: 20px;
+    }
 }
 .hidden{
     /* display: none; */
     bottom: -20vh;
-    
     transition-duration: 2s;
     transition-property: bottom;
 }

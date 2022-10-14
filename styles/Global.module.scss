@@ -18,5 +18,27 @@
 
 .font {
     font-family: Poppins, sans-serif;
+}
 
+.hidden{
+  display: none;
+}
+.button{
+  height: 60px;
+    width: 20vw;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 0px;
+    &_primary{
+      background: #68a6e3;
+    color: black;
+    }
+    &_secondary{
+      background: #0e0e0e;
+      color: white;
+    }
+    &hover{
+      cursor: pointer;
+    }
+    
 }
