@@ -2,8 +2,9 @@ import { setDefaultResultOrder } from 'dns';
 import type { NextPage } from 'next'
 import React from 'react';
 import { useEffect } from 'react';
+import { urlToHttpOptions } from 'url';
 import Error from '../components/error'
-
+import data from '../public/Major_Names.json'
 
 const Home: NextPage = () => {
   let [err, setError] = React.useState({active: false,code: 0})
@@ -18,6 +19,15 @@ const Home: NextPage = () => {
     }
   }
 
+  function fetchMajorLit(element: any){
+
+    for(let major of data["MAIN"]){
+      // let ele = <option></option> as unknown as HTMLOptionElement;
+      // ele.value = major['Major Name']
+      element.appendChild(<option>{major['Major Name']}</option> )
+      
+    }
+  }
 
   // to call error call error(code)
   // the code is in errorCodes.tsx
@@ -25,10 +35,12 @@ const Home: NextPage = () => {
   return (
     <div>
       <div>
+       
       </div>
-      <button onClick={()=>{error(1)}}>
+      <button onClick={()=>{fetchMajorLit(document.getElementById('test'))}}>
         activate error
       </button>
+     
       <Error code={err.code} boolean={err.active}></Error>   
     </div>
   )
