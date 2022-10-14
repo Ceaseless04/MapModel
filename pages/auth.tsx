@@ -45,11 +45,12 @@ const Authentication = () => {
         change(n)
         return true;
       })
-      .catch((error) => {
+      .catch(async (error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-         error(1);
+        // or whichever error will appear here
+         await error(1);
       });
     return false;
   }
