@@ -69,6 +69,7 @@ const Authentication = () => {
         checkEmail(email,n) ;
         break;
       case 3:
+      // add if user information is null - use kris function coral
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
         userInformation.country = getInputVal("country");
