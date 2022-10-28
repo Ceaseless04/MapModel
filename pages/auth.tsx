@@ -1,6 +1,6 @@
 // this is the authentication page
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import global from "../styles/Global.module.scss";
 import styles from "../styles/Auth.module.scss";
 import { auth, db } from "../.env/firebase";
@@ -59,6 +59,28 @@ const Authentication = () => {
     return (document.getElementById(name) as HTMLInputElement).value;
   }
   
+  //constant for allowing the image to be null when no image selected 
+  const [Image] = useState(null);
+  //constant for image from user
+  const [image, setImage] = useState<File>();
+  //constant for image preview (string since we are using image URL)
+  const [preview, setPreview] = useState<string>()
+  //show preview of image
+  useEffect(()=>{
+    if(image){
+      //data reader
+      const reader = new FileReader(); 
+      //activate when selection is done
+      reader.onloadend = ()=>{
+        setPreview(reader.result as string)
+      }
+      //read as data url
+      reader.readAsDataURL(image);
+    }else{
+      error;
+    }
+  },[image])
+
   function next(e: any, n: number) {
     e.preventDefault();
     console.log(n);
@@ -138,7 +160,17 @@ const Authentication = () => {
         {/* step two: image input */}
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>add image</h1>
-          <input type="image" name="name" id="name"></input>
+          {/* display string base64 for url as an image and fit image with good resolution */}
+          <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+              {/* get url of image when it is selected and/or changed */}
+              <input type={"file"} accept="image/*" onChange={(event)=>{ const file = event.target.files![0]
+              if (File){
+                setImage(file);
+              }else{
+                error;
+              }
+              }}/>
+
           {/* submit everything to firebase on this step */}
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 2)}> back </button>
