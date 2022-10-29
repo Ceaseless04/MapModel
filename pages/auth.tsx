@@ -19,9 +19,18 @@ const Authentication = () => {
     picture: ""
   });
 
-  function checkEmail(email: string,n:number) {
+  async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
+
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (email.match(emailPattern)) {
+      return submitEmail(email,n);
+    }
+    else {
+      await error(1);
+    }
+
     change(n)
   }
   async function error(code: number) {
