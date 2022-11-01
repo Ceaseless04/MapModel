@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import React from 'react';
 import { useEffect } from 'react';
 import Error from '../components/error'
-
+import MapComponent from '../components/map';
 
 const Home: NextPage = () => {
   let [err, setError] = React.useState({active: false,code: 0})
@@ -24,12 +24,13 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <div>
-      </div>
-      <button onClick={()=>{error(1)}}>
+      {/* <div>
+      </div> */}
+      <MapComponent></MapComponent>
+      {/* <button onClick={()=>{error(1)}}>
         activate error
       </button>
-      <Error code={err.code} boolean={err.active}></Error>   
+      <Error code={err.code} boolean={err.active}></Error>    */}
     </div>
   )
 }
