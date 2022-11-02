@@ -7,25 +7,25 @@
         padding: 2vw;
      }
 }
-.open{
-    width: 30vw;
-    transition-duration: 1s;
-    transition-property: width;
+.open {
+  width: 30vw;
+  transition-duration: 1s;
+  transition-property: width;
 }
-.close{
-    width: 5vw;
-    transition-duration: 1s;
-    transition-property: width;
+.close {
+  width: 5vw;
+  transition-duration: 1s;
+  transition-property: width;
 }
-.image_container{
-    height: 30vh;
-    width: 100%;
-    background-color: burlywood;
-    transition-duration: 1.5s;
-    transition-property: display;
+.image_container {
+  height: 30vh;
+  width: 100%;
+  background-color: burlywood;
+  transition-duration: 1.5s;
+  transition-property: display;
 }
-.closeOpenBtn{
-    position: absolute;
-    top: 1vw;
-    right: 1vw;
+.closeOpenBtn {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
 }

@@ -1,12 +1,20 @@
+/* Poppins  Extra bold for user form, Poppins semibold for map page, 
+Poppins light for consent page*/
 @font-face {
   font-family: "Poppins";
+  src: url("../public/fonts/Poppins-ExtraBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
   src: url("../public/fonts/Poppins-Regular.ttf");
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins-Bold";
-  src: url("../public/fonts/Poppins-Bold.ttf");
+  font-family: "Poppins-SemiBold";
+  src: url("../public/fonts/Poppins-SemiBold.ttf");
   font-style: normal;
 }
 
@@ -17,28 +25,27 @@
 }
 
 .font {
-    font-family: Poppins, sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
-.button{
+.button {
   height: 60px;
-    width: 20vw;
-    font-size: 1.2em;
-    border-radius: 5px;
-    border: 0px;
-    &_primary{
-      background: #68a6e3;
+  width: 20vw;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: 0px;
+  &_primary {
+    background: #68a6e3;
     color: black;
-    }
-    &_secondary{
-      background: #0e0e0e;
-      color: white;
-    }
-    &hover{
-      cursor: pointer;
-    }
-    
+  }
+  &_secondary {
+    background: #0e0e0e;
+    color: white;
+  }
+  &hover {
+    cursor: pointer;
+  }
 }
