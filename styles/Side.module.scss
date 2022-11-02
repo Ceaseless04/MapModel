@@ -20,12 +20,20 @@
 .image_container {
   height: 30vh;
   width: 100%;
-  background-color: burlywood;
+  background-color: rgb(200, 178, 149);
   transition-duration: 1.5s;
   transition-property: display;
+}
+.profilePic{
+  border-radius: 60%;
+  width: 70%;
+  height: 100%;
+  object-fit:fill;
+  margin-left: 14%;
 }
 .closeOpenBtn {
   position: absolute;
   top: 1vw;
   right: 1vw;
 }
+
