@@ -125,12 +125,12 @@ const Authentication = () => {
         <div className={pageNo == 1 ? styles.form : global.hidden}>
           <h1>add email</h1>
 
-          <input>
+          <input
             type="text"
             placeholder="email"
             name="email"
-            id="email"
-          ></input>
+            id="email">
+          </input>
           <div className={styles.bottomBtns} >
             <button className={`${global.button_primary} ${global.button}`} onClick={(e) => next(e, 2)}> Next </button>
           </div>
