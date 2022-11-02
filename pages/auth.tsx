@@ -125,7 +125,7 @@ const Authentication = () => {
         <div className={pageNo == 1 ? styles.form : global.hidden}>
           <h1>add email</h1>
 
-          <input
+          <input>
             type="text"
             placeholder="email"
             name="email"
