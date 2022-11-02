@@ -6,6 +6,13 @@ import styles from "../styles/Auth.module.scss";
 import { auth, db } from "../.env/firebase";
 import * as firebase from "firebase/compat/app";
 import data from "../public/Major_Names.json";
+import Error from "../components/error";
+
+import { app, firestore } from '../firebase';
+import { collection, addDoc, getDoc } from 'firebase/firestore';
+
+
+const dbInstance = collection(firestore, 'users');
 
 const Authentication = () => {
   let [err, setError] = React.useState({ active: false, code: 0 });
@@ -19,9 +26,18 @@ const Authentication = () => {
     picture: ""
   });
 
-  function checkEmail(email: string,n:number) {
+  async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
+
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (email.match(emailPattern)) {
+      return submitEmail(email,n);
+    }
+    else {
+      await error(1);
+    }
+
     change(n)
   }
   async function error(code: number) {
@@ -41,7 +57,7 @@ const Authentication = () => {
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
         userInformation.email = email;
-        window.localStorage.setItem("emailForSignIn", email);
+        window.localStorage.setItem("email", email);
         change(n)
         return true;
       })
@@ -91,6 +107,7 @@ const Authentication = () => {
         checkEmail(email,n) ;
         break;
       case 3:
+      // add if user information is null - use kris function coral
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
         userInformation.country = getInputVal("country");
@@ -107,7 +124,10 @@ const Authentication = () => {
           picture: ""
         });
         console.log(userInformation);
-
+        addDoc(dbInstance, userInformation).then(async()=>{
+          console.log("added")
+            await error(3)
+        })
         break;
       default:
         change(n);
@@ -131,8 +151,8 @@ const Authentication = () => {
             type="text"
             placeholder="email"
             name="email"
-            id="email"
-          ></input>
+            id="email">
+          </input>
           <div className={styles.bottomBtns} >
             <button className={`${global.button_primary} ${global.button}`} onClick={(e) => next(e, 2)}> Next </button>
           </div>
@@ -178,6 +198,8 @@ const Authentication = () => {
           </div>
         </div>
       </form>
+      <Error code={err.code} boolean={err.active}></Error>
+
     </div>
   );
 };
