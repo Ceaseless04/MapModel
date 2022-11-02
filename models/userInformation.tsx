@@ -4,6 +4,7 @@ export interface user {
     country: string | undefined;
     major: string | undefined;
     city: string | undefined;
-    picture: any;
-    
+    picture: any; 
+    lat: string | undefined;
+    lng: string | undefined;  
 }

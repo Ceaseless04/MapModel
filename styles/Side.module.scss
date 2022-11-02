@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*This is the styling page for the side nav bar*/
 
 .container {
@@ -7,6 +8,16 @@
   &_bottom {
     padding: 3vw;
   }
+=======
+.container{
+     position: fixed;
+     z-index: 1;
+     height: 100vh;
+     background-color: #c7deed;
+     &_bottom{
+        padding: 2vw;
+     }
+>>>>>>> c09add9c92fd5e8ac52cf76d440e78025f2cc05b
 }
 .open {
   width: 40vw;

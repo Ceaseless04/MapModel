@@ -1,8 +1,13 @@
-.parent {
-  width: 100vw;
-  height: 100vh;
-  margin: 0px;
-  padding: 0px;
+.parent{
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    position: fixed;
+    z-index: 1;
+    background: transparent;
+    pointer-events:none
+
 }
 .main {
   margin: 0px;
@@ -13,4 +18,18 @@
   bottom: 1vw;
   right: 1vw;
   display: grid;
+}
+.right{
+    position: fixed;
+    top: 1vw;
+    right: 1vw;
+    display: grid;
+    pointer-events: initial;
+    z-index: 1;
+}
+.map{
+    position:fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0
 }
