@@ -48,12 +48,8 @@ const Home: NextPage = () => {
   }
   return (
     <div>
-<<<<<<< HEAD
       <div className={style.parent}>
-        <SideNav  imageUrl="imageUrl" name="Harry Potter" course="magic" city="hogwarts" country="United Kingdom"></SideNav>
-=======
-        <SideNav userData={selectedMarker}></SideNav>
->>>>>>> c09add9c92fd5e8ac52cf76d440e78025f2cc05b
+        <SideNav  imageUrl="imageUrl" userData={selectedMarker}></SideNav>
         <div className={style.right}>
           <button>Information</button> 
           <button
@@ -67,6 +63,7 @@ const Home: NextPage = () => {
         <MapComponent sendMarker={marker} markerData={markerData}></MapComponent>
       </div>      
       <Error code={err.code} boolean={err.active}></Error>
+    </div>
     </div>
   );
 };
