@@ -22,7 +22,8 @@ const SideNav=({userData}:props)=>{
             <div className={`${state?styles.image_container:globals.hidden}`  }>
                  {userData.picture}
                 {/* create image component */}
-                <img className={styles.profilePic} src={"https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg"} object-fit='cover' />
+                <img className={styles.profilePic} src={userData.picture} object-fit='cover' />
+                {/* <img className={styles.profilePic} src={"https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg"} object-fit='cover' /> */}
             </div>
             <div className={`${state?styles.container_bottom:globals.hidden}`}>
                 <h1> {userData.name} </h1>
