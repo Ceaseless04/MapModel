@@ -25,7 +25,8 @@ Poppins light for consent page*/
 }
 
 .font {
-  font-family: Poppins, sans-serif;
+  font-family: Poppins;
+  color: #486966;
 }
 
 .hidden {
@@ -33,17 +34,19 @@ Poppins light for consent page*/
 }
 .button {
   height: 60px;
-  width: 20vw;
+  width: 10vw;
   font-size: 1.2em;
-  border-radius: 5px;
+  border-radius: 25px;
   border: 0px;
   &_primary {
-    background: #68a6e3;
-    color: black;
+    background:  #486966;
+    color:white;
+    font-family: Poppins-SemiBold;
   }
   &_secondary {
-    background: #0e0e0e;
+    background: #9A6E53;;
     color: white;
+    font-family: Poppins-SemiBold;
   }
   &hover {
     cursor: pointer;

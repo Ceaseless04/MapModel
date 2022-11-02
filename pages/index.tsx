@@ -25,9 +25,9 @@ const Home: NextPage = () => {
   return (
     <div>
       <div className={style.parent}>
-        <SideNav imageUrl="imageUrl" name="Harry Potter" course="magic" city="hogwarts" country="United Kingdom"></SideNav>
+        <SideNav  imageUrl="imageUrl" name="Harry Potter" course="magic" city="hogwarts" country="United Kingdom"></SideNav>
         <div className={style.right}>
-          <button>Information</button>
+          <button>Information</button> 
           <button
             onClick={() =>  error(1)} >
             activate error

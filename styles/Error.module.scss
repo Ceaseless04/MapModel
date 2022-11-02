@@ -1,19 +1,19 @@
 .container{
-    color: rgb(236, 45, 27);
+    color: #EDE5DD;
     height: auto;
     text-align: center;
-    width: 80%;
+    width: 50%;
     position: fixed;
     font-size: smaller;
     //need to set when importing Fonts (Poppins Bold & Poppins Regular & Poppins light)
     //font-family: ;
     
 
-    left: 50%;
+    left: 70%;
     transform: translateX(-40vw);
-    background: rgb(241, 187, 187);
+    background: #ED8476;
     text-decoration-style: dashed;
-    outline: 1.5px dashed rgb(255, 7, 7);
+    outline: 1.5px dashed #EB6856;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,11 +25,11 @@
 .hidden{
     /* display: none; */
     bottom: -20vh;
-    transition-duration: 2s;
+    transition-duration: 5s;
     transition-property: bottom;
-}
+} 
 .transformed {
     bottom: 5vh;
-    transition-duration: 2s;
+    transition-duration: 1s;
     transition-property: bottom;
 }
