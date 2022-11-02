@@ -106,7 +106,7 @@ const Authentication = () => {
   }
 
   return (
-    <div className={global.font} >
+    <div className={global.font}>
       <form>
         {/* step one: email input */}
         <div className={pageNo == 1 ? styles.form : global.hidden}>
