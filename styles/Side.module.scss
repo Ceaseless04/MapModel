@@ -6,7 +6,7 @@
   background-color: #1f8cd4;
   &_bottom {
     padding: 3vw;
-  } 
+  }
 }
 .open {
   width: 40vw;
@@ -28,14 +28,14 @@
   border-radius: 1000px;
   background-color: #ffffff;
   transition-duration: 1s;
-  transition-property: display; }
+  transition-property: display;
+}
 .closeOpenBtn {
   cursor: pointer;
   position: absolute;
   top: 1vw;
   right: 1vw;
 }
-
 
 /* Styling for varied props */
 .name {
@@ -45,13 +45,13 @@
   text-align: center;
 }
 
-.course{
+.course {
   font-family: Poppins-Semibold;
   color: #ffffff;
   font-size: 50px;
   text-align: center;
 }
-.location{
+.location {
   font-family: Poppins-Semibold;
   color: #ffffff;
   font-size: 45px;
@@ -59,34 +59,33 @@
 }
 /* Styling for fixed props */
 
-.namef{
+.namef {
   margin: auto;
   width: 500px;
   height: 47px;
-  background-color:#FFFCFC;
+  background-color: #fffcfc;
   font-family: Poppins-Semibold;
   color: #486966;
   font-size: 35px;
   text-align: center;
 }
-.majorf{
+.majorf {
   margin: auto;
   width: 500px;
   height: 47px;
-  background-color:#FFFCFC;
+  background-color: #fffcfc;
   font-family: Poppins-Semibold;
   color: #486966;
   font-size: 35px;
   text-align: center;
 }
-.locationf{
+.locationf {
   margin: auto;
   width: 500px;
   height: 47px;
-  background-color:#FFFCFC;
+  background-color: #fffcfc;
   font-family: Poppins-Semibold;
   color: #486966;
   font-size: 30px;
   text-align: center;
 }
-
