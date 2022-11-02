@@ -163,11 +163,11 @@ const Authentication = () => {
           {/* display string base64 for url as an image and fit image with good resolution */}
           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
-              <input type={"file"} accept="image/*" onChange={(event)=>{ const file = event.target.files![0]
+              <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
               if (File){
                 setImage(file);
               }else{
-                error;
+                await error(1);
               }
               }}/>
 
