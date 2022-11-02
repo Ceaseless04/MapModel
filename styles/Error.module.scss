@@ -1,22 +1,30 @@
 .container{
-    color: white;
-    height: 10vh;
+    color: rgb(236, 45, 27);
+    height: auto;
     text-align: center;
-    width: 60vw;
+    width: 80%;
     position: fixed;
+    font-size: smaller;
+    //need to set when importing Fonts (Poppins Bold & Poppins Regular & Poppins light)
+    //font-family: ;
     
+
     left: 50%;
-    transform: translateX(-30vw);
-    background: black;
+    transform: translateX(-40vw);
+    background: rgb(241, 187, 187);
+    text-decoration-style: dashed;
+    outline: 1.5px dashed rgb(255, 7, 7);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    p{
+        font-size: 20px;
+    }
 }
 .hidden{
     /* display: none; */
     bottom: -20vh;
-    
     transition-duration: 2s;
     transition-property: bottom;
 }

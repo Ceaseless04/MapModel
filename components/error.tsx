@@ -9,7 +9,7 @@ type Props = {
 const Error=({code,boolean}:Props)=>{
     return(
         <div className={boolean?`${styles.container} ${styles.transformed}`:`${styles.container} ${styles.hidden}`}>
-            <h1>{codes[code as keyof typeof codes]}</h1>
+            <p>{codes[code as keyof typeof codes]}</p>
         </div>        
     )
 }
