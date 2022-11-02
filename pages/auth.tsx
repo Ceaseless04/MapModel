@@ -6,6 +6,13 @@ import styles from "../styles/Auth.module.scss";
 import { auth, db } from "../.env/firebase";
 import * as firebase from "firebase/compat/app";
 import data from "../public/Major_Names.json";
+import Error from "../components/error";
+
+import { app, firestore } from '../firebase';
+import { collection, addDoc, getDoc } from 'firebase/firestore';
+
+
+const dbInstance = collection(firestore, 'users');
 
 const Authentication = () => {
   let [err, setError] = React.useState({ active: false, code: 0 });
@@ -50,7 +57,7 @@ const Authentication = () => {
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
         userInformation.email = email;
-        window.localStorage.setItem("emailForSignIn", email);
+        window.localStorage.setItem("email", email);
         change(n)
         return true;
       })
@@ -95,7 +102,10 @@ const Authentication = () => {
           picture: ""
         });
         console.log(userInformation);
-
+        addDoc(dbInstance, userInformation).then(async()=>{
+          console.log("added")
+            await error(3)
+        })
         break;
       default:
         change(n);
@@ -156,6 +166,8 @@ const Authentication = () => {
           </div>
         </div>
       </form>
+      <Error code={err.code} boolean={err.active}></Error>
+
     </div>
   );
 };
