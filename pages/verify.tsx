@@ -5,36 +5,43 @@ import { firestore } from '../firebase';
 import { auth } from "../.env/firebase";
 import styles  from "../styles/Verify.module.scss"
 import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 const dbInstance = collection(firestore, 'emails');
 
 const verify: NextPage = () => {
-    if (typeof window !== "undefined") {
-    if (auth.isSignInWithEmailLink(window.location.href)) {
-        var email = window.localStorage.getItem("email");
-        if (!email) {
-        email = window.prompt("Please provide your email for confirmation");
-        }
-        auth
-        .signInWithEmailLink(email || "", window.location.href)
-        .then((result) => {
-            // Clear email from storage.
-            window.localStorage.removeItem("email");
-            console.log(email)
-            console.log(result.user)
-            window.localStorage.setItem("email",email||"")
-            console.log("process complete")
-            addDoc(dbInstance, {email: email}).then(()=>{
-                console.log("added")
-              })
-            router.replace('/auth?email='+email)
-        })
-        .catch((error) => {
-            // Some error occurred, you can inspect the code: error.code
-            // Common errors could be invalid email and invalid or expired OTPs.
-            console.log(error)
-        });
-    }}
+    let [email, change] = React.useState(null as any);
+
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            if (auth.isSignInWithEmailLink(window.location.href)) {
+                change(window.localStorage.getItem("email"));
+                console.log((email))
+                if (!email) {
+                email = window.localStorage.getItem("email");
+                }
+                auth
+                .signInWithEmailLink(email || "", window.location.href)
+                .then((result) => {
+                    // Clear email from storage.
+                    window.localStorage.removeItem("email");
+                    console.log(email)
+                    console.log(result.user)
+                    window.localStorage.setItem("email",email||"")
+                    console.log("process complete")
+                    addDoc(dbInstance, {email: email}).then(()=>{
+                        console.log("added")
+                    })
+                    router.replace('/auth?email='+email.replace("@","%40"))
+                })
+                .catch((error) => {
+                    // Some error occurred, you can inspect the code: error.code
+                    // Common errors could be invalid email and invalid or expired OTPs.
+                    console.log(error)
+                });
+            }}
+    },[])
+    
     const router = useRouter()
 
     return(
@@ -44,7 +51,7 @@ const verify: NextPage = () => {
                 if page doesn't redirect click here 
                 <br></br>
                {/* <Link href="/auth/"> */}
-                <button onClick={() => router.replace('/auth')}>
+                <button onClick={() => router.replace('/auth?email='+email.replace("@","%40"))}>
                     redirect me
                 </button> 
               {/* </Link> */}

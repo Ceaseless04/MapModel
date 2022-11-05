@@ -1,6 +1,6 @@
 // this is the authentication page
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import global from "../styles/Global.module.scss";
 import styles from "../styles/Auth.module.scss";
 import { auth, db } from "../.env/firebase";
@@ -11,6 +11,7 @@ import Error from "../components/error";
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
+import { useRouter } from "next/router";
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -29,7 +30,7 @@ const Authentication = () => {
     lat: null,
     lng: null
   });
-
+  const router = useRouter()
   async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
@@ -98,14 +99,12 @@ const Authentication = () => {
   useEffect(() => {
     let email = window.location.href.split('/')[3]
     if(email.split("?").length>1){
-      let emailAddress = email.split("?")[1].split("=")[1]
+      let emailAddress = email.split("?")[1].split("=")[1].split("&")[0].replace("%40","@")
       // set to local storage and input value
+      console.log(emailAddress)
       window.localStorage.setItem("email", emailAddress);
       (document.getElementById("email") as HTMLInputElement).value = emailAddress
       checkEmail(emailAddress,2)
-      console.log(emailAddress)
-    }
-    else{
 
     }
 },[]);
@@ -128,18 +127,47 @@ const Authentication = () => {
         lng: lng
       });
       console.log(userInformation)
+      console.log(image)
+      addDoc(dbInstance, userInformation).then(async()=>{
+          await error(3, false)
+          router.replace('/')
+      })
       return ({lat: lat, lng: lng})
     } catch (err) {
       console.log(err);
     }
   };
-  async function next(e: any, n: number) {
+  
+  //constant for allowing the image to be null when no image selected 
+  const [Image] = useState(null);
+  //constant for image from user
+  const [image, setImage] = useState<File>();
+  //constant for image preview (string since we are using image URL)
+  const [preview, setPreview] = useState<string>()
+  //show preview of image
+  useEffect(()=>{
+    if(image){
+      //data reader
+      const reader = new FileReader(); 
+      //activate when selection is done
+      reader.onloadend = ()=>{
+        setPreview(reader.result as string)
+      }
+      //read as data url
+      reader.readAsDataURL(image);
+    }else{
+      error;
+    }
+  },[image])
+
+   async function next(e: any, n: number) {
     e.preventDefault();
     console.log(n);
     switch (n) {
       case 2:
         const email = getInputVal("email");
         window.localStorage.setItem("email", email)
+        console.log(window.localStorage.getItem("email"))
         //check email then proceed to call below function
         checkEmail(email,n) ;
         break;
@@ -153,11 +181,6 @@ const Authentication = () => {
         break;
       case 0:
         await getLatLng(location.value.place_id)
-        console.log(userInformation);
-        addDoc(dbInstance, userInformation).then(async()=>{
-          console.log("added")
-            await error(3, false)
-        })
         window.localStorage.clear()
         break;
       default:
@@ -181,8 +204,8 @@ const Authentication = () => {
             type="text"
             placeholder="email"
             name="email"
-            id="email"
-          ></input>
+            id="email">
+          </input>
           <div className={styles.bottomBtns} >
             <button className={`${global.button_primary} ${global.button}`} onClick={(e) => next(e, 2)}> Next </button>
           </div>
@@ -242,7 +265,17 @@ const Authentication = () => {
         {/* step two: image input */}
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>add image</h1>
-          <input type="image" name="image" id="image"></input>
+          {/* display string base64 for url as an image and fit image with good resolution */}
+           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+              {/* get url of image when it is selected and/or changed */}
+              <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
+              if (File){
+                setImage(file);
+              }else{
+                await error(1);
+              }
+              }}/> 
+
           {/* submit everything to firebase on this step */}
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 2)}> back </button>
