@@ -2,6 +2,7 @@ import React from 'react';
 import  styles  from '../styles/Side.module.scss'
 import globals from '../styles/Global.module.scss'
 import { user } from '../models/userInformation';
+import 'material-icons/iconfont/material-icons.css';
 
 type props = {
     userData: any
@@ -17,10 +18,11 @@ const SideNav=({userData}:props)=>{
         <div className={`${styles.container} ${state?styles.open:styles.close}` }>
             {/* <image></image> */}
             <div className={styles.closeOpenBtn}>
-                <button onClick={()=>{menu()}}>{!state?"Open":"Close"}</button>
+                <button className={styles.button} onClick={()=>{menu()}}><span className="material-icons">{!state?"arrow_forward_ios":"close"}
+</span></button>
             </div>
             <div className={`${state?styles.image_container:globals.hidden}`  }>
-                 {userData.picture}
+                 {/* {userData.picture} */}
                 {/* create image component */}
                 <img className={styles.profilePic} src={userData.picture} object-fit='cover' />
                 {/* Use line below to test with an image
