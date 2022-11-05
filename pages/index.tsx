@@ -46,6 +46,9 @@ const Home: NextPage = () => {
             })
   })
   }
+  useEffect(()=>{
+       getData();
+  },[]);
   return (
     <div>
         <SideNav userData={selectedMarker}></SideNav>
@@ -61,7 +64,7 @@ const Home: NextPage = () => {
       <div className={style.map}>
         <MapComponent sendMarker={marker} markerData={markerData}></MapComponent>
       </div>      
-      <Error code={err.code} boolean={err.active}></Error>
+      <Error code={err.code} boolean={err.active} isError={true}></Error>
     </div>
   );
 };
