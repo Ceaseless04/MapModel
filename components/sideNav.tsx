@@ -21,6 +21,10 @@ const SideNav=({userData}:props)=>{
             </div>
             <div className={`${state?styles.image_container:globals.hidden}`  }>
                  {userData.picture}
+                {/* create image component */}
+                <img className={styles.profilePic} src={userData.picture} object-fit='cover' />
+                {/* Use line below to test with an image
+                <img className={styles.profilePic} src={"https://images.ctfassets.net/usf1vwtuqyxm/5bqVQEImJpoPAciVRNQqFu/336875e94b38fac41c7c1bed3336dcf6/SHP---Hero-Mob.jpg"} object-fit='cover' /> */}
             </div>
             <div className={`${state?styles.container_bottom:globals.hidden}`}>
                 <h1> {userData.name} </h1>
