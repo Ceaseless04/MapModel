@@ -4,11 +4,15 @@ import { useEffect } from 'react';
 type Props = {
     code: number;
     boolean: boolean;
+    isError: boolean;
 }
 
-const Error=({code,boolean}:Props)=>{
+const Error=({code,boolean,isError}:Props)=>{
     return(
-        <div className={boolean?`${styles.container} ${styles.transformed}`:`${styles.container} ${styles.hidden}`}>
+        <div className={
+            !isError?
+            boolean?`${styles.container} ${styles.container__success} ${styles.transformed}`:`${styles.container} ${styles.container__success} ${styles.hidden}`:
+            boolean?`${styles.container} ${styles.container__error} ${styles.transformed}`:`${styles.container}  ${styles.container__error} ${styles.hidden}`}>
             <p>{codes[code as keyof typeof codes]}</p>
         </div>        
     )

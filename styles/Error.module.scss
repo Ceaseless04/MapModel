@@ -1,5 +1,5 @@
 .container{
-    color: rgb(236, 45, 27);
+    
     height: auto;
     text-align: center;
     width: 80%;
@@ -11,9 +11,9 @@
 
     left: 50%;
     transform: translateX(-40vw);
-    background: rgb(241, 187, 187);
+    
     text-decoration-style: dashed;
-    outline: 1.5px dashed rgb(255, 7, 7);
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +21,17 @@
     p{
         font-size: 20px;
     }
+    &__error{
+        color: rgb(236, 45, 27);
+        background: rgb(241, 187, 187);
+        outline: 1.5px dashed rgb(255, 7, 7);
+    }
+    &__success{
+        color: rgb(121, 236, 27);
+        background: rgb(204, 241, 187);
+        outline: 1.5px dashed rgb(127, 255, 7);
+    }
+
 }
 .hidden{
     /* display: none; */
