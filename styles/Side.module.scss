@@ -2,7 +2,7 @@
      position: fixed;
      z-index: 1;
      height: 100vh;
-     background-color: #c7deed;
+     
      &_bottom{
         padding: 2vw;
      }
@@ -11,23 +11,29 @@
   width: 30vw;
   transition-duration: 1s;
   transition-property: width;
+  background-color: #c7deed;
 }
 .close {
   width: 5vw;
+  background: none;
+  // backdrop-filter: blur(10px);
   transition-duration: 1s;
   transition-property: width;
 }
 .image_container {
-  height: 30vh;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 40vh;
+  width: 30vw;
+  background-image: linear-gradient(rgb(200, 178, 149) 60%, #c7deed);
   background-color: rgb(200, 178, 149);
   transition-duration: 1.5s;
-  transition-property: display;
+  transition-property: width;
 }
 .profilePic{
   border-radius: 50%;
-  width: 70%;
-  height: 100%;
+  width: 20vw;
+  height: 20vw;
   object-fit:fill;
   margin-left: 14%;
 }
@@ -37,3 +43,12 @@
   right: 1vw;
 }
 
+.button{
+  content: "\0e5e1";
+  background-color: transparent;
+  border: none;
+  &:hover{
+    cursor: pointer;
+    color: green;
+  }
+}
