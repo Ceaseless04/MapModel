@@ -1,21 +1,19 @@
-.container{
-     position: fixed;
-     z-index: 1;
-     height: 100vh;
-     
-     &_bottom{
-        padding: 2vw;
-     }
+.container {
+  position: fixed;
+  z-index: 1;
+  height: 100vh;
+  &_bottom {
+    padding: 3vw;
+  }
 }
 .open {
-  width: 30vw;
+  width: 40vw;
   transition-duration: 1s;
   transition-property: width;
-  background-color: #c7deed;
+  background-color: #1f8cd4;
 }
 .close {
   width: 5vw;
-  background: none;
   // backdrop-filter: blur(10px);
   transition-duration: 1s;
   transition-property: width;
@@ -24,17 +22,15 @@
   display: flex;
   align-items: center;
   height: 40vh;
-  width: 30vw;
-  background-image: linear-gradient(rgb(200, 178, 149) 60%, #c7deed);
-  background-color: rgb(200, 178, 149);
+  width: 100%;
   transition-duration: 1.5s;
   transition-property: width;
 }
-.profilePic{
+.profilePic {
   border-radius: 50%;
   width: 20vw;
   height: 20vw;
-  object-fit:fill;
+  object-fit: fill;
   margin-left: 14%;
 }
 .closeOpenBtn {
@@ -43,12 +39,55 @@
   right: 1vw;
 }
 
-.button{
+.button {
   content: "\0e5e1";
   background-color: transparent;
-  border: none;
-  &:hover{
+  border: 30px;
+  &:hover {
     cursor: pointer;
-    color: green;
-  }
+    color: #ffffff;
+  } }
+
+/* Styling for varied props */
+.name {
+  font-family: Poppins-Semibold;
+  color: #ffffff;
+  font-size: 55px;
+  text-align: center;
+}
+
+.major {
+  font-family: Poppins-Semibold;
+  color: #ffffff;
+  font-size: 35px;
+  text-align: center;
+}
+.location {
+  font-family: Poppins-Semibold;
+  color: #ffffff;
+  font-size: 35px;
+  text-align: center;
+}
+/* Styling for fixed props */
+
+
+.majorf {
+  margin: auto;
+  width: 100%;
+  height: 47px;
+  background-color: #fffcfc;
+  font-family: Poppins-Semibold;
+  color: #486966;
+  font-size: 35px;
+  text-align: center;
+}
+.locationf {
+  margin: auto;
+  width: 100%;
+  height: 47px;
+  background-color: #fffcfc;
+  font-family: Poppins-Semibold;
+  color: #486966;
+  font-size: 35px;
+  text-align: center;
 }

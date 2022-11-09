@@ -1,40 +1,46 @@
+.body{
+  background-image: url("/public/Images/MapBG.png");
+}
 .form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 60vh;
+  width: 100vh;
   align-items: center;
-  margin-top: 15vh;
+  margin-top: 20vh;
+  margin-left: 25vh;
+  background-color: #F4E5CF;
 }
-.form input{
-    height: 40px;
-    width: 40vw;
-    font-size: 1.4em;
-    padding: 8px 1vw;
-    border: 1px solid black;
-    color: black;
-    border-radius: 5px;
-}
-.form select {
-    height: 60px;
-    width: 42vw;
+.form input {
+
+  font-family: Poppins-Regular;
+  color: #486966;
+  height: 10%;
+  width: 80%;
   font-size: 1.4em;
   padding: 8px 1vw;
-  border: 1px solid black;
-  color: black;
-  border-radius: 5px;
 }
-.form select *{
-    width: 42vw
-    
+.form select {
+  height: 40%;
+  width: 50%;
+  font-family: Poppins-Regular;
+  font-size: 1.4em;
+  padding: 8px 1vw;
+  border: 1px solid rgb(255, 255, 255);
+  color: #486966;
+  border-radius: 0px;
+  background-color: white;
+}
+.form select * {
+  width: 5vw
 }
 .bottomBtns {
   display: flex;
-  width: 90vw;
+  width: 50%;
   justify-content: space-evenly;
-  margin: 2vh 5vw;
+  margin: 3vh 5vw;
 }
-.input{
-  
-  border: 1px solid black;
+.input {
+  border: 1px #486966;
 }

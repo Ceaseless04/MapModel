@@ -198,11 +198,11 @@ const Authentication = () => {
       <form>
         {/* step one: email input */}
         <div className={pageNo == 1 ? styles.form : global.hidden}>
-          <h1>add email</h1>
+          <h1>Type your student email</h1>
 
           <input
             type="text"
-            placeholder="email"
+            placeholder="Email"
             name="email"
             id="email">
           </input>
@@ -213,11 +213,11 @@ const Authentication = () => {
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
           <h1>add information</h1>
-          <input type="text" placeholder="name" name="name" id="name"></input>
+          <input type="text" placeholder="Name" name="name" id="name"></input>
           <select name="major" id="major">
             {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
-        <p>type in your city of origin below</p>
+        <p>Type your city of origin below</p>
         <div className={styles.input}>
             <GooglePlacesAutocomplete
                 apiKey="AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4"
@@ -229,17 +229,17 @@ const Authentication = () => {
                       ...provided,
                       height: '60px',
                       width: '39vw',
-                      color: 'black',
+                      color: '#486966',
                     }),
                     option: (provided: any) => ({
                       ...provided,
-                      color: 'black',
+                      color: '#486966',
                       height: '60px',
                       width: '39vw',
                     }),
                     singleValue: (provided:any) => ({
                       ...provided,
-                      color: 'black',
+                      color: '#486966',
                       width: '39vw',    
                     }),
                   },
@@ -247,10 +247,10 @@ const Authentication = () => {
               />
         </div>
           
-          <input type="text" placeholder="city" name="city" id="city" value={location?.label.split(',').slice(0,-1)} readOnly></input>
+          <input type="text" placeholder="City" name="city" id="city" value={location?.label.split(',').slice(0,-1)} readOnly></input>
           <input
             type="text"
-            placeholder="country"
+            placeholder="Country"
             name="country"
             id="country"
             value={location?.label.split(',').slice(-1)} readOnly
@@ -264,7 +264,7 @@ const Authentication = () => {
         </div>
         {/* step two: image input */}
         <div className={pageNo === 3 ? styles.form : global.hidden}>
-          <h1>add image</h1>
+          <h1>Upload your photo</h1>
           {/* display string base64 for url as an image and fit image with good resolution */}
            <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
