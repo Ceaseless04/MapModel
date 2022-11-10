@@ -166,8 +166,8 @@ const Authentication = () => {
     const storage = getStorage();
     const storageRef = ref(storage, "storage");
     const imagesRef = storageRef;
-    const messaeg1 = "input-storage";
-    uploadString(storageRef, messaeg1).then((snapshot) => {
+    const message1 = "input-storage";
+    uploadString(storageRef, message1).then((snapshot) => {
       console.log("Successful upload!");
     });
     
