@@ -164,7 +164,7 @@ const Authentication = () => {
 
     {/*Needed to work with firebase storage (sending images)*/}
     const storage = getStorage();
-    const storageRef = ref(storage, 'file.png');
+    const storageRef = ref(storage, "storage");
     const imagesRef = storageRef;
     const messaeg1 = "input-storage";
     uploadString(storageRef, messaeg1).then((snapshot) => {
