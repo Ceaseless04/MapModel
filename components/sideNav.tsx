@@ -29,9 +29,11 @@ const SideNav=({userData}:props)=>{
                 <img className={styles.profilePic} src={"https://images.ctfassets.net/usf1vwtuqyxm/5bqVQEImJpoPAciVRNQqFu/336875e94b38fac41c7c1bed3336dcf6/SHP---Hero-Mob.jpg"} object-fit='cover' /> */}
             </div>
             <div className={`${state?styles.container_bottom:globals.hidden}`}>
-                <h1> {userData.name} </h1>
-                <h2>{userData.city}, {userData.country}</h2>
-                <h2>{userData.major}</h2>
+                 <h1 className={styles.name}> {userData.name} </h1>
+                 <h2 className={styles.locationf}> Location </h2>
+                 <h2 className={styles.location}>{userData.city}, {userData.country}</h2>
+                 <h1 className={styles.majorf}> Major </h1>
+                 <h2 className={styles.major} >{userData.major}</h2>
             </div>
         </div>
     )
