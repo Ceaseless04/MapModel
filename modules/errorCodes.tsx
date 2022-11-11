@@ -5,4 +5,6 @@ export const codes={
     4: "An Input is empty, please check for it",
     5: "Please enter a valid email",
     6: "Email verification link has been sent",
+    7: "City is Empty, Make  sure to search for it",
+    8: "please select an image"
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import  styles  from '../styles/Side.module.scss'
 import globals from '../styles/Global.module.scss'
 import { user } from '../models/userInformation';
-import 'material-icons/iconfont/material-icons.css';
+// import 'material-icons/iconfont/material-icons.css';
 
 type props = {
     userData: any
