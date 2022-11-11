@@ -7,11 +7,12 @@ import { auth, db } from "../.env/firebase";
 import * as firebase from "firebase/compat/app";
 import data from "../public/Major_Names.json";
 import Error from "../components/error";
-
+import { getStorage, ref, uploadString } from "firebase/storage";
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
 import { useRouter } from "next/router";
+import { Value } from "sass";
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -160,6 +161,16 @@ const Authentication = () => {
     }
   },[image])
 
+
+    {/*Needed to work with firebase storage (sending images)*/}
+    const storage = getStorage();
+    const storageRef = ref(storage, "storage");
+    const imagesRef = storageRef;
+    const message1 = "input-storage";
+    uploadString(storageRef, message1).then((snapshot) => {
+      console.log("Successful upload!");
+    });
+    
    async function next(e: any, n: number) {
     e.preventDefault();
     console.log(n);
