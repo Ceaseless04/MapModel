@@ -10,6 +10,7 @@ import { user } from "../models/userInformation"
 
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
+import Popup from '../components/popup';
 
 
 const dbInstance = collection(firestore, 'users');
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
   let [err, setError] = React.useState({ active: false, code: 0 });
   const [selectedMarker, selectMarker] = useState({} as any);
   const [markerData, addMarkers] = useState([] as any[])
+   const [selected, select] = useState({show: true, dataType:"information"})
 
   async function error(code: number) {
     setError({ active: !err.active, code: code });
@@ -47,18 +49,27 @@ const Home: NextPage = () => {
   })
   }
   useEffect(()=>{
+<<<<<<< Updated upstream
        getData();
   },[]);
+
+  function selectI(param: string){
+      select({show: true,dataType:param})
+      console.log(selected.show)
+  }
+=======
+>>>>>>> Stashed changes
   return (
     <div>
+      <Popup show={selected.show} dataType={selected.dataType}></Popup>
         <SideNav userData={selectedMarker}></SideNav>
         <div className={style.right}>
           <button>Information</button>
-          <button
-            onClick={() =>  error(1)} >
-            activate error
-          </button>
+          
           <button onClick={()=>getData()}>get Data</button>
+          <button onClick={()=>selectI("information")}>
+            
+            show information</button>
         </div>
       
       <div className={style.map}>

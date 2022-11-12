@@ -6,12 +6,13 @@
     position: fixed;
     font-size: smaller;
     width: 50%;
+    margin: auto;
 
     //need to set when importing Fonts (Poppins Bold & Poppins Regular & Poppins light)
     //font-family: ;
     
 
-    left: 70%;
+    left: 65%;
     transform: translateX(-40vw);
     background: #ED8476;
     text-decoration-style: dashed;
@@ -29,9 +30,10 @@
         outline: 1.5px dashed rgb(255, 7, 7);
     }
     &__success{
-        color: rgb(121, 236, 27);
-        background: rgb(204, 241, 187);
-        outline: 1.5px dashed rgb(127, 255, 7);
+        color: #FCFCFF;
+        background: #486966;
+        font-family: Poppins;
+       
     }
 
 }
@@ -44,7 +46,7 @@
 }
 .transformed {
     bottom: 5vh;
-    transition-duration: 2s;
+    transition-duration: 3s;
     transition-duration: 1s;
     transition-property: bottom;
 }

@@ -5,7 +5,8 @@ export const styleMap = [
         "stylers": [
             {
                 "color": "#444444"
-            }
+            },
+            
         ]
     },
     {
@@ -13,7 +14,7 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#f2f2f2"
+                "color": "#E2ECBF"
             }
         ]
     },
@@ -53,7 +54,11 @@ export const styleMap = [
         "stylers": [
             {
                 "visibility": "off"
+            },
+            {
+               "color": " #000000" 
             }
+        
         ]
     },
     {
@@ -70,10 +75,10 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#46bcec"
+                "color": "#75CFF0"
             },
             {
-                "visibility": "on"
+                "visibility": "o"
             }
         ]
     }
