@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 // import {MarkerF} from '@react-google-maps/api'
-import { styleMap } from "../models/mapStyle";
+import { styleMap } from "../modules/mapStyle";
 import Marker from "./marker";
 type Props = {
     markerData: any
@@ -12,8 +12,8 @@ const MapComponent=({ markerData, sendMarker}:Props )=>{
 
   const defaultProps = {
     center: {
-      lat: 25.7617,
-      lng: 25.7617,
+      lat: 37.0902,
+      lng: 95.7129,
     },
     zoom: 5,
   };

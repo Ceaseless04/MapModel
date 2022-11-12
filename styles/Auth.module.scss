@@ -8,8 +8,6 @@
   height: 60vh;
   width: 100vh;
   align-items: center;
-  margin-top: 20vh;
-  margin-left: 25vh;
   background-color: #F4E5CF;
 }
 .form input {
@@ -23,7 +21,7 @@
 }
 .form select {
   height: 40%;
-  width: 50%;
+  width: 85%;
   font-family: Poppins-Regular;
   font-size: 1.4em;
   padding: 8px 1vw;
@@ -42,5 +40,12 @@
   margin: 3vh 5vw;
 }
 .input {
+  width: 85%;
   border: 1px #486966;
+}
+.center_flex{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

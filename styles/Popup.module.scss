@@ -1,0 +1,10 @@
+.parent{
+    height: 80vh;
+    width: 80vw;
+    position: fixed;
+    left: 10vw;
+    top: 10vh;
+    backdrop-filter: blur(20px);
+    // background-color: white;
+    z-index: 4;
+}

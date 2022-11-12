@@ -1,5 +1,5 @@
 import styles from '../styles/Error.module.scss'
-import { codes }  from '../models/errorCodes' 
+import { codes }  from '../modules/errorCodes' 
 import { useEffect } from 'react';
 type Props = {
     code: number;
