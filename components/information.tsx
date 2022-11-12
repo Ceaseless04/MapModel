@@ -21,7 +21,7 @@ const InformationComponent=()=>{
                 })
             }
             </div>
-            <p>We can add more information about ...</p>
+            <p>We hope you enjoyed the experience!</p>
         </div>
     )
 }
