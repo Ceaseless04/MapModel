@@ -7,12 +7,11 @@ import { auth, db } from "../.env/firebase";
 import * as firebase from "firebase/compat/app";
 import data from "../public/Major_Names.json";
 import Error from "../components/error";
-import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, uploadString } from "firebase/storage";
+
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
 import { useRouter } from "next/router";
-import { Value } from "sass";
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -20,7 +19,6 @@ const dbEmailInstance = collection(firestore, 'emails');
 const Authentication = () => {
   let [err, setError] = React.useState({ active: false, code: 0 , error: true});
   let [pageNo, change] = React.useState(1);
-  let [imageUrl, changeUrl] = React.useState("");
   let [location, selectLocation] = React.useState(null as any)
   let [userInformation, addInfo] = React.useState({
     email: "",
@@ -52,21 +50,6 @@ const Authentication = () => {
       // restore defaults
       setError({ active: err.active, code: code, error:isError });
     }
-  }
-   async function uploadFile(): Promise<string>{
-    const uploadRef = ref(storage, "storage/"+image?.name);
-    
-    const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
-    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL) => {
-        
-          console.log('File available at', downloadURL);
-          changeUrl(downloadURL)
-          userInformation.picture = downloadURL;
-          return downloadURL;
-        }).catch(async (er)=>{
-          await error(2)
-        });
-  return imageUrl!
   }
   function submitEmail(email: string,n:number): boolean {
     // const auth = getAuth(app);
@@ -129,22 +112,19 @@ const Authentication = () => {
     try {
       const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4`);
       const obj = await res.json();
-      console.log(obj)
       // var obj = JSON.parse(data);
       let lat =  obj.results[0].geometry.location.lat;
       let lng =  obj.results[0].geometry.location.lng; 
-      userInformation.lat = lat;
-      userInformation.lng = lng;
-      await uploadFile();
-      await addInfo({
+      
+      addInfo({
         email:  window.localStorage.getItem("email") || getInputVal("email"),
         name: getInputVal("name"),
         major: getInputVal("major"),
-        city: location?.label.split(',').slice(0,-1),
-        country: location?.label.split(',').slice(-1),
-        picture: imageUrl,
-        lat: obj.results[0].geometry.location.lat,
-        lng: obj.results[0].geometry.location.lng
+        country: getInputVal("country"),
+        city: getInputVal("city"),
+        picture: "",
+        lat: lat,
+        lng: lng
       });
       console.log(userInformation)
       console.log(image)
@@ -180,17 +160,6 @@ const Authentication = () => {
     }
   },[image])
 
-
-    {/*Needed to work with firebase storage (sending images)*/}
-    const storage = getStorage();
-    const storageRef = ref(storage, "storage");
-    const imagesRef = storageRef;
-    const message1 = "input-storage";
-   // uploadString(storageRef, message1).then((snapshot) => {
-        //   console.log(snapshot)
-        //   console.log("Successful upload!");
-        // });
-    
    async function next(e: any, n: number) {
     e.preventDefault();
     console.log(n);
@@ -206,36 +175,13 @@ const Authentication = () => {
       // add if user information is null - use kris function coral
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
-        userInformation.city = location?.label.split(',').slice(0,-1);
-        userInformation.country = location?.label.split(',').slice(-1);
-        userInformation.email = getInputVal("email");
-
-        //If statements to call for errors if null -> Kris (note by cami)
-        if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
-            
-            if(userInformation.city==""){
-              await error(7)
-            }
-            else{
-              await error(4);
-            }
-        }
-        else{
-           change(n);
-        }
-       
+        userInformation.country = getInputVal("country");
+        userInformation.city = getInputVal("city");
+        change(n);
         break;
       case 0:
-        if(image){
-          await getLatLng(location.value.place_id)
-        
-          window.localStorage.clear()
-        }
-        else{
-          //changed error 8 to error 11 (Cami)
-          await error(11)
-        }
-       
+        await getLatLng(location.value.place_id)
+        window.localStorage.clear()
         break;
       default:
         change(n);
@@ -249,11 +195,11 @@ const Authentication = () => {
  
   return (
     <div className={global.font}>
-      <form className={styles.center_flex}>
+      <form>
         {/* step one: email input */}
+        <div className=""></div>
         <div className={pageNo == 1 ? styles.form : global.hidden}>
           <h1>Type your student email</h1>
-
           <input
             type="text"
             placeholder="Email"
@@ -267,9 +213,7 @@ const Authentication = () => {
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
           <h1>add information</h1>
-          <p>Name</p>
           <input type="text" placeholder="Name" name="name" id="name"></input>
-          <p>Major</p>
           <select name="major" id="major">
             {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
@@ -302,8 +246,16 @@ const Authentication = () => {
                 }}
               />
         </div>
-          <p>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
-          <p>City of Origin: <strong>{location?.label.split(',').slice(0,-1)}</strong></p>
+          
+          <input type="text" placeholder="City" name="city" id="city" value={location?.label.split(',').slice(0,-1)} readOnly></input>
+          <input
+            type="text"
+            placeholder="Country"
+            name="country"
+            id="country"
+            value={location?.label.split(',').slice(-1)} readOnly
+          ></input>
+          {/* submit everything to firebase on this step */}
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 1)}> back </button>
            

@@ -1,12 +1,50 @@
 export const styleMap = [
     {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
+        "featureType": "administrative.country",
+        "elementType": "geometry",
         "stylers": [
             {
-                "color": "#444444"
+                "saturation": "-52"
             },
-            
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "weight": "2.18"
+            },
+            {
+                "lightness": "24"
+            },
+            {
+                "saturation": "-100"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
         ]
     },
     {
@@ -14,7 +52,25 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#E2ECBF"
+                "hue": "#FFA800"
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.landcover",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "hue": "#c6ff00"
+            },
+            {
+                "saturation": "47"
+            },
+            {
+                "lightness": "-8"
             }
         ]
     },
@@ -23,19 +79,16 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
+                "hue": "#679714"
             },
             {
-                "lightness": 45
+                "saturation": 33.4
+            },
+            {
+                "lightness": -25.4
+            },
+            {
+                "gamma": 1
             }
         ]
     },
@@ -44,29 +97,43 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "hue": "#53FF00"
+            },
+            {
+                "saturation": -73
+            },
+            {
+                "lightness": 40
+            },
+            {
+                "gamma": 1
             }
         ]
     },
     {
         "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            },
-            {
-               "color": " #000000" 
-            }
-        
-        ]
-    },
-    {
-        "featureType": "transit",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
+                "hue": "#FBFF00"
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#00FFFD"
+            },
+            {
+                "lightness": 30
+            },
+            {
+                "gamma": 1
             }
         ]
     },
@@ -75,10 +142,10 @@ export const styleMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#75CFF0"
+                "hue": "#00bbff"
             },
             {
-                "visibility": "o"
+                "saturation": "39"
             }
         ]
     }
