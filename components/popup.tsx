@@ -4,27 +4,39 @@ import InformationComponent from "./information";
 import { popups } from "../modules/popups";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import data from "../public/Major_Names.json";
-import { key } from "../.env/firebase"
-// impoty { mat-c}
+import { key } from "../.env/firebase";
+import { countries } from "../modules/countries"
+var emojiFlags = require('emoji-flags');
+
 type props = {
   dataType: string;
+  handleClick: any;
 };
-const Popup = ({ dataType }: props) => {
+const Popup = ({ dataType, handleClick}: props,) => {
   const [showPop, display] = useState(false);
-  const [location, selectLocation] = useState("");
+  const [location, selectLocation] = useState('');
   const [showFilter, displayFilter] = useState(false);
   const [major, changeMajor] = useState("")
 
-  // useEffect(()=>{
-  //   console.log(location,major)
-  // },[location,major])
+  useEffect(()=>{
+    if(dataType == popups.filter){
+      handleClick([location,major])
+    }
+  },[location,major])
 
+  function getFlagEmoji(countryCode: string) {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map((char:any) =>  127397 + char.charCodeAt());
+    return String.fromCodePoint(...codePoints);
+  }
   return (
-    <div className={styles.index}>
+    <div className={`${styles.index} ${dataType == popups.filter?styles.index_topRight:``} `  }>
       {dataType == popups.filter && (
         <div>
           <button
-            className={styles.filter_button}
+            className={`${styles.filter_button} ${showFilter?styles.filter_button_long:``}`}
             onClick={() => {
               displayFilter(!showFilter);
             }}
@@ -42,7 +54,7 @@ const Popup = ({ dataType }: props) => {
             }
           >
             <p>country</p>
-            <GooglePlacesAutocomplete
+            {/* <GooglePlacesAutocomplete
               apiKey= { key }
               selectProps={{
                 location,
@@ -67,17 +79,37 @@ const Popup = ({ dataType }: props) => {
                   })
                 }
               }}
-            />
+            /> */}
+            <p>Countries</p>
+            <select value={location} name="country" id="country"   onChange={(e)=>{
+                    selectLocation(e.target.value as any);
+                  }
+                }>
+              {
+                countries.map((val:any, index: any)=>{
+                  return <option key={index} 
+                value={val.name}
+                  >{index>0?getFlagEmoji(val.code):null} {val.name}                 
+                  </option>
+                })
+              }
+            </select>
             <p>Major</p>
-            <select name="major" id="major">
+            <select value={major} name="major" id="major" onChange={(e)=>{
+                    changeMajor(e.target.value as any);
+                  }}>
               {data["MAIN"].map((val) => (
-                <option value={val["Major Name"]} key={val["Major Name"]} onClick={()=>changeMajor(val["Major Name"])}>
+                <option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val["Major Name"]} onClick={()=>changeMajor(val["Major Name"])}>
                   {val["Major Name"]}
                 </option>
               ))}
             </select>
-            <button onClick={()=>{console.log(location, major)}}>
-              Filter
+            <button onClick={()=>{
+          changeMajor('')
+          selectLocation('')  
+          }
+            }>
+              Clear
             </button>
           </div>
         </div>

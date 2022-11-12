@@ -12,6 +12,7 @@ import { app, firestore } from '../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import Popup from '../components/popup';
 import { popups } from '../modules/popups';
+import { copyFile } from 'fs/promises';
 
 const dbInstance = collection(firestore, 'users');
 
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
   let [err, setError] = React.useState({ active: false, code: 0 });
   const [selectedMarker, selectMarker] = useState({} as any);
   const [markerData, addMarkers] = useState([] as any[])
+  const [markerCopyData, copy] = useState([] as any[])
    const [selected, select] = useState({show: true, dataType:"information"})
 
   async function error(code: number) {
@@ -47,25 +49,60 @@ const Home: NextPage = () => {
                 return val
             })
   })
+  copy(markerData)
   }
   useEffect(()=>{
        getData();
   },[]);
 
- 
+  const handleLocation = (filter:any) =>{
+    // filter is location(country) and major
+    console.log(filter)
+    if(filter[0] || filter[1]){
+      var countries: any[] = [];
+      var majors: any[]  = [];
+      if(filter[0].length>0 || filter[1].length>0){
+        if(filter[0].length>0){
+          countries = markerData.filter((val,idx)=>{
+            if(((val.country).toLowerCase().trim())===(filter[0].toLowerCase().trim())){
+              return val
+            } 
+            
+          })
+        }
+        if(filter[1].length>0){
+          majors = markerData.filter((value,idx)=>{
+        if(((value.major).toLowerCase().trim())===(filter[1].toLowerCase().trim())){
+          return value
+        } 
+       })
+        }
+       
+       console.log(countries)
+        copy(Array.from(new Set([...countries,...majors])))
+        console.log(Array.from(new Set([...countries,...majors])))
+        console.log(markerCopyData)
+        console.log(countries)
+        console.log(majors)
+      }
+      
+      
+    }
+    // else{
+    //   getData()
+    // }
+    
+    
+  }
+
   return (
     <div>
-      <Popup dataType={popups.information}></Popup>
-      <Popup dataType={popups.filter}></Popup>
-      <Popup dataType={popups.team}></Popup>
-        <SideNav userData={selectedMarker}></SideNav>
-        <div className={style.right}>
-          <button>Information</button>
-          <button onClick={()=>getData()}>get Data</button>
-        </div>
-      
+      <Popup dataType={popups.information} handleClick={null} ></Popup>
+      <Popup dataType={popups.filter} handleClick={handleLocation}></Popup>
+      <Popup dataType={popups.team} handleClick={null}></Popup>
+      <SideNav userData={selectedMarker}></SideNav>      
       <div className={style.map}>
-        <MapComponent sendMarker={marker} markerData={markerData}></MapComponent>
+        <MapComponent sendMarker={marker} markerData={markerCopyData}></MapComponent>
       </div>      
       <Error code={err.code} boolean={err.active} isError={true}></Error>
     </div>

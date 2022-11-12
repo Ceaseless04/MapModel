@@ -142,7 +142,7 @@ const Authentication = () => {
         name: getInputVal("name"),
         major: getInputVal("major"),
         city: location?.label.split(',').slice(0,-1),
-        country: location?.label.split(',').slice(-1),
+        country: obj.results[0].formatted_address.split(',').slice(-1).join().trim(),
         picture: imageUrl,
         lat: obj.results[0].geometry.location.lat,
         lng: obj.results[0].geometry.location.lng
@@ -208,7 +208,7 @@ const Authentication = () => {
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
         userInformation.city = location?.label.split(',').slice(0,-1);
-        userInformation.country = location?.label.split(',').slice(-1);
+        userInformation.country = location?.label.split(',').slice(-1).join().trim();
         userInformation.email = getInputVal("email");
         if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
             
@@ -269,7 +269,7 @@ const Authentication = () => {
           <input type="text" placeholder="Name" name="name" id="name"></input>
           <p>Major</p>
           <select name="major" id="major">
-            {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
+            {data["MAIN"].map((val)=><option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
         <p>Type your city of origin below</p>
         <div className={styles.input}>

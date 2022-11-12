@@ -26,13 +26,16 @@ left: 0;
   &_button {
     background-color: #c58a67;
     font-size: 18px;
+    height: 40px;
     display: flex;
     width: 6vw;
     outline: none;
     border: 0px;
     align-items: center;
     justify-content: space-evenly;
-
+    &_long{
+        width:31.5vw;
+    }
     // .mat_icon{
 
     // }
@@ -62,6 +65,7 @@ left: 0;
 .closeheight {
   height: 0;
   padding: 0px;
+  width: 0;
   transition-duration: 3s;
   transition-property: height;
 }
@@ -85,4 +89,11 @@ left: 0;
 .index{
     position:fixed;
     z-index: 4;
+    &_topRight{
+        right: 80px;
+        top: 10px;
+    }
+    &_bottomLeft{
+
+    }
 }
