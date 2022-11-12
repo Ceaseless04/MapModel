@@ -49,7 +49,6 @@ const Home: NextPage = () => {
   })
   }
   useEffect(()=>{
-<<<<<<< Updated upstream
        getData();
   },[]);
 
@@ -57,14 +56,15 @@ const Home: NextPage = () => {
       select({show: true,dataType:param})
       console.log(selected.show)
   }
-=======
->>>>>>> Stashed changes
+
   return (
     <div>
       <Popup show={selected.show} dataType={selected.dataType}></Popup>
         <SideNav userData={selectedMarker}></SideNav>
         <div className={style.right}>
           <button>Information</button>
+          <button>Add Yourself to map</button>
+
           
           <button onClick={()=>getData()}>get Data</button>
           <button onClick={()=>selectI("information")}>
@@ -80,4 +80,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Home; 
