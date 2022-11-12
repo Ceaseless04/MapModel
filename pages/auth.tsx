@@ -213,15 +213,28 @@ const Authentication = () => {
         //If statements to call for errors if null -> Kris (note by cami)
         if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
             
+            // error codes using export const (by Kris)
             if(userInformation.city==""){
+              await error(10)
+            }
+            else if(userInformation.name=="") {
               await error(7)
             }
+            else if(userInformation.major=="") {
+              await error(8)
+            }
+            else if(userInformation.country=="") {
+              await error(9)
+            }
+            else if(userInformation.email=="") {
+              await error(5)
+            }
             else{
-              await error(4);
+              await error(4)
             }
         }
         else{
-           change(n);
+           change(n)
         }
        
         break;
