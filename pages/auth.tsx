@@ -209,6 +209,8 @@ const Authentication = () => {
         userInformation.city = location?.label.split(',').slice(0,-1);
         userInformation.country = location?.label.split(',').slice(-1);
         userInformation.email = getInputVal("email");
+
+        //If statements to call for errors if null -> Kris (note by cami)
         if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
             
             if(userInformation.city==""){
@@ -230,7 +232,8 @@ const Authentication = () => {
           window.localStorage.clear()
         }
         else{
-          await error(8)
+          //changed error 8 to error 11 (Cami)
+          await error(11)
         }
        
         break;
