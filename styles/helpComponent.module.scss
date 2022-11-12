@@ -1,6 +1,6 @@
 .container{
-    height: 50vh;
-    width: 24vw;
+    height: auto;
+    width: 20vw;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -9,6 +9,9 @@
 
     .help__icon{
         border-radius: 50%;
+        height: 100%;
+        width: auto;
+        overflow: hidden;
     }
 // .title{
 

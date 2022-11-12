@@ -2,12 +2,15 @@
   position: fixed;
   z-index: 1;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   &_bottom {
     padding: 3vw;
   }
 }
 .open {
-  width: 40vw;
+  width: 30vw;
   transition-duration: 1s;
   transition-property: width;
   background-color: #1f8cd4;
@@ -19,6 +22,7 @@
   transition-property: width;
 }
 .image_container {
+  justify-content: center;
   display: flex;
   align-items: center;
   height: 40vh;
@@ -31,7 +35,6 @@
   width: 20vw;
   height: 20vw;
   object-fit: fill;
-  margin-left: 14%;
 }
 .closeOpenBtn {
   position: absolute;
@@ -52,20 +55,20 @@
 .name {
   font-family: Poppins-Semibold;
   color: #ffffff;
-  font-size: 55px;
+  font-size: 35px;
   text-align: center;
 }
 
 .major {
   font-family: Poppins-Semibold;
   color: #ffffff;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
 }
 .location {
   font-family: Poppins-Semibold;
   color: #ffffff;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
 }
 /* Styling for fixed props */
@@ -78,7 +81,7 @@
   background-color: #fffcfc;
   font-family: Poppins-Semibold;
   color: #486966;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
 }
 .locationf {
@@ -88,6 +91,6 @@
   background-color: #fffcfc;
   font-family: Poppins-Semibold;
   color: #486966;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
 }

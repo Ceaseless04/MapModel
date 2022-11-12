@@ -2,9 +2,9 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-
+export const key = "AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4"
 export const firebaseConfig = {
-    apiKey: "AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4",
+    apiKey: key,
     authDomain: "mapme-66db2.firebaseapp.com",
     projectId: "mapme-66db2",
     storageBucket: "mapme-66db2.appspot.com",
