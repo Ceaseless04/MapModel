@@ -7,11 +7,11 @@ import Error from "../components/error";
 import SideNav from "../components/sideNav";
 import style from "../styles/Home.module.scss"
 import { user } from "../models/userInformation"
-
+import 'material-icons/iconfont/material-icons.css';
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import Popup from '../components/popup';
-
+import { popups } from '../modules/popups';
 
 const dbInstance = collection(firestore, 'users');
 
@@ -52,21 +52,16 @@ const Home: NextPage = () => {
        getData();
   },[]);
 
-  function selectI(param: string){
-      select({show: true,dataType:param})
-      console.log(selected.show)
-  }
+ 
   return (
     <div>
-      <Popup show={selected.show} dataType={selected.dataType}></Popup>
+      <Popup dataType={popups.information}></Popup>
+      <Popup dataType={popups.filter}></Popup>
+      <Popup dataType={popups.team}></Popup>
         <SideNav userData={selectedMarker}></SideNav>
         <div className={style.right}>
           <button>Information</button>
-          
           <button onClick={()=>getData()}>get Data</button>
-          <button onClick={()=>selectI("information")}>
-            
-            show information</button>
         </div>
       
       <div className={style.map}>

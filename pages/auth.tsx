@@ -11,8 +11,9 @@ import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, upl
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
-import { useRouter } from "next/router";
+import  useRouter   from "next/router" ;
 import { Value } from "sass";
+import {key }  from  "../.env/firebase"
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -32,7 +33,7 @@ const Authentication = () => {
     lat: null,
     lng: null
   });
-  const router = useRouter()
+  const router = useRouter
   async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
@@ -57,7 +58,7 @@ const Authentication = () => {
     const uploadRef = ref(storage, "storage/"+image?.name);
     
     const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
-    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL) => {
+    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL: any) => {
         
           console.log('File available at', downloadURL);
           changeUrl(downloadURL)
@@ -106,7 +107,7 @@ const Authentication = () => {
     }
     else{
       change(n)
-       querySnapshot.forEach((doc) => {
+       querySnapshot.forEach((doc: any) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
@@ -127,7 +128,7 @@ const Authentication = () => {
 },[]);
   const getLatLng = async (placeId: string) => {
     try {
-      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4`);
+      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${key}`);
       const obj = await res.json();
       console.log(obj)
       // var obj = JSON.parse(data);
@@ -273,7 +274,7 @@ const Authentication = () => {
         <p>Type your city of origin below</p>
         <div className={styles.input}>
             <GooglePlacesAutocomplete
-                apiKey="AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4"
+                apiKey={key}
                 selectProps={{
                   location,
                   onChange: selectLocation,

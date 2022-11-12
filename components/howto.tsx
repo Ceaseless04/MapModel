@@ -15,10 +15,9 @@ const HowTo=({step}:props)=>{
             className={styles.help__icon}
             src={step.imageUrl}
             alt={"Picture of " + step.imageAria}
-            width={250}
-            height={250} 
-            />
-            
+            width={150}
+            height={150} 
+            />       
             <h2 className={styles.title}>{step.title}</h2>
             <p className={styles.details}>{step.details}</p>
     </div>

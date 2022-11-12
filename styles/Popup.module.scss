@@ -1,10 +1,88 @@
-.parent{
-    height: 80vh;
-    width: 80vw;
-    position: fixed;
-    left: 10vw;
-    top: 10vh;
-    backdrop-filter: blur(20px);
-    // background-color: white;
+.parent {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+left: 0; 
+   top: 0; 
+  /* background-color: white; */
+  backdrop-filter: blur(10px);
+ 
+
+  .child {
+    height: 90%;
+    width: 90%;
+    padding: 2%;
+    background: white;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+}
+
+.filter {
+  &_button {
+    background-color: #c58a67;
+    font-size: 18px;
+    display: flex;
+    width: 6vw;
+    outline: none;
+    border: 0px;
+    align-items: center;
+    justify-content: space-evenly;
+
+    // .mat_icon{
+
+    // }
+  }
+  &_container {
+    width: 30vw;
+    background-color: #c58a67;
+    overflow: hidden;
+    select {
+      height: 60px;
+      width: 100%;
+      option {
+        height: 60px;
+        width: 29vw;
+      }
+    }
+    option {
+      height: 60px;
+      width: 29vw;
+    }
+  }
+}
+.inherit{
+    width: 100%;
+    height: inherit;
+}
+.closeheight {
+  height: 0;
+  padding: 0px;
+  transition-duration: 3s;
+  transition-property: height;
+}
+.openheight {
+  height: auto;
+  padding: 15px;
+  transition-duration: 3s;
+  transition-property: height;
+}
+
+.moveleft {
+  left: 0;
+  transition-duration: 1s;
+  transition-property: left;
+}
+.moveright {
+  left: 100vw;
+  transition-duration: 1s;
+  transition-property: left;
+}
+.index{
+    position:fixed;
     z-index: 4;
 }
