@@ -13,6 +13,7 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import Popup from "../components/popup";
 import { popups } from "../modules/popups";
 import { copyFile } from "fs/promises";
+import { useRouter } from "next/router";
 
 const dbInstance = collection(firestore, "users");
 
@@ -89,6 +90,9 @@ const Home: NextPage = () => {
     // }
   };
 
+  const router = useRouter()
+
+
   return (
     <div>
       <Popup dataType={popups.information} handleClick={null}></Popup>
@@ -97,7 +101,8 @@ const Home: NextPage = () => {
       <SideNav userData={selectedMarker}></SideNav>
 
       {/* Shortcut button to add yourself to the map */}
-      <button className={style.addPerson}> 
+
+      <button className={style.addPerson} onClick={() => router.replace('/auth/')}> 
         <span className="material-icons">add</span>
         <p>Add yourself to the map</p>
       </button>
