@@ -95,10 +95,13 @@ const Home: NextPage = () => {
       <Popup dataType={popups.filter} handleClick={handleLocation}></Popup>
       <Popup dataType={popups.team} handleClick={null}></Popup>
       <SideNav userData={selectedMarker}></SideNav>
+      
+      {/* Shortcut button to add yourself to the map */}
       <button className={style.addPerson}>
         <span className="material-icons">add</span>
         <p>Add yourself to the map</p>
       </button>
+
       <div className={style.map}>
         <MapComponent
           sendMarker={marker}
