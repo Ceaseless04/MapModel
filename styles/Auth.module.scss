@@ -6,46 +6,66 @@
   flex-direction: column;
   justify-content: space-between;
   height: 60vh;
-  width: 100vh;
+  width: 60%;
   align-items: center;
   background-color: #F4E5CF;
 }
-.form input {
 
+.form input {
   font-family: Poppins-Regular;
   color: #486966;
-  height: 10%;
-  width: 80%;
-  font-size: 1.4em;
+  height: 5%;
+  width: 82%;
+  font-size: 1.2em;
   padding: 8px 1vw;
+  border-radius: 6px;
 }
 .form select {
-  height: 40%;
+  height: auto;
   width: 85%;
   font-family: Poppins-Regular;
-  font-size: 1.4em;
+  font-size: 0.9em;
   padding: 8px 1vw;
   border: 1px solid rgb(255, 255, 255);
   color: #486966;
-  border-radius: 0px;
+  border-radius: 6px;
   background-color: white;
 }
-.form select * {
-  width: 5vw
-}
+
 .bottomBtns {
   display: flex;
   width: 50%;
   justify-content: space-evenly;
   margin: 3vh 5vw;
 }
+
 .input {
   width: 85%;
-  border: 1px #486966;
+  height: 10%;
+
 }
 .center_flex{
   display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.prompt_email{
+  margin-top: 18%;
+}
+
+.prompts_Info{
+  font-size: 1em;
+}
+
+.error_display{
+  margin-top: 21px;
+  margin-bottom: 0;
+  font-size: medium;
+}
+
+.nameInput{
+  font: 100;
+  border: none;
 }

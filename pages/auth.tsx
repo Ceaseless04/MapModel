@@ -250,7 +250,7 @@ const Authentication = () => {
       <form className={styles.center_flex}>
         {/* step one: email input */}
         <div className={pageNo == 1 ? styles.form : global.hidden}>
-          <h1>Type your student email</h1>
+          <h1 className={styles.prompt_email }>Type your student email</h1>
 
           <input
             type="text"
@@ -264,14 +264,19 @@ const Authentication = () => {
         </div>
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
-          <h1>add information</h1>
-          <p>Name</p>
-          <input type="text" placeholder="Name" name="name" id="name"></input>
-          <p>Major</p>
-          <select name="major" id="major">
+          <h1>Add information</h1>
+
+          <p className={styles.prompts_Info}>Name</p>
+          <input className={styles.nameInput} type="text" placeholder="Name" name="name" id="name"></input>
+
+          <p className={styles.prompts_Info}>Major</p>
+
+          <select className={styles.selectMajor} name="major" id="major" >
             {data["MAIN"].map((val)=><option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
-        <p>Type your city of origin below</p>
+
+        <p className={styles.prompts_Info} >Type your city of origin below</p>
+
         <div className={styles.input}>
             <GooglePlacesAutocomplete
                 apiKey={key}
@@ -300,7 +305,7 @@ const Authentication = () => {
                 }}
               />
         </div>
-          <p>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
+          <p className={styles.error_display}>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
           <p>City of Origin: <strong>{location?.label.split(',').slice(0,-1)}</strong></p>
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 1)}> back </button>
@@ -312,7 +317,7 @@ const Authentication = () => {
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>Upload your photo</h1>
           {/* display string base64 for url as an image and fit image with good resolution */}
-           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+           <img src={preview} style={{objectFit:"contain"}} width='20%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
               <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
               if (File){
