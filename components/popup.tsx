@@ -53,7 +53,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
                 : `${styles.filter_container} ${styles.closeheight}`
             }
           >
-            <p>country</p>
+            {/* <p>country</p> */}
             {/* <GooglePlacesAutocomplete
               apiKey= { key }
               selectProps={{
@@ -104,7 +104,8 @@ const Popup = ({ dataType, handleClick}: props,) => {
                 </option>
               ))}
             </select>
-            <button onClick={()=>{
+            <button  className={`${styles.clear}`} onClick={()=>{
+              
           changeMajor('')
           selectLocation('')  
           }
