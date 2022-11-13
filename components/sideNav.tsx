@@ -2,6 +2,7 @@ import React from 'react';
 import  styles  from '../styles/Side.module.scss'
 import globals from '../styles/Global.module.scss'
 import { user } from '../models/userInformation';
+import { SERVER_PROPS_ID } from 'next/dist/shared/lib/constants';
 // import 'material-icons/iconfont/material-icons.css';
 
 type props = {
@@ -11,7 +12,14 @@ type props = {
 const SideNav=({userData}:props)=>{
     let [state,open]=React.useState(!(Object.getPrototypeOf(userData) === Object.prototype))
     function menu(){
-        open(state=!state)
+        // did not understand how to implement if/else here :( => (note by Kris)
+        // open(state=!state)
+        if(userData == null) {
+            close()
+        }
+        else {
+            open(state=!state)
+        }
     }
 
     return(
