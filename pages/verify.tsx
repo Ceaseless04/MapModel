@@ -16,7 +16,6 @@ const verify: NextPage = () => {
         if (typeof window !== "undefined") {
             if (auth.isSignInWithEmailLink(window.location.href)) {
                 change(window.localStorage.getItem("email"));
-                console.log((email))
                 if (!email) {
                 email = window.localStorage.getItem("email");
                 }
@@ -25,10 +24,7 @@ const verify: NextPage = () => {
                 .then((result) => {
                     // Clear email from storage.
                     window.localStorage.removeItem("email");
-                    console.log(email)
-                    console.log(result.user)
                     window.localStorage.setItem("email",email||"")
-                    console.log("process complete")
                     addDoc(dbInstance, {email: email}).then(()=>{
                         console.log("added")
                     })

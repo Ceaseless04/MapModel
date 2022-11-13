@@ -14,7 +14,7 @@ const MapComponent=({ markerData, sendMarker}:Props )=>{
   const defaultProps = {
     center: {
       lat: 37.0902,
-      lng: 95.7129,
+      lng: -95.7129,
     },
     zoom: 5,
   };

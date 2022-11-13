@@ -60,7 +60,6 @@ const Authentication = () => {
     const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
     const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL: any) => {
         
-          console.log('File available at', downloadURL);
           changeUrl(downloadURL)
           userInformation.picture = downloadURL;
           return downloadURL;
@@ -86,7 +85,6 @@ const Authentication = () => {
       .catch(async (error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         // or whichever error will appear here
          await error(1);
       });
@@ -108,8 +106,7 @@ const Authentication = () => {
     else{
       change(n)
        querySnapshot.forEach((doc: any) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      // doc.data() is never undefined for query doc snaps
     });
     }
    
@@ -119,7 +116,6 @@ const Authentication = () => {
     if(email.split("?").length>1){
       let emailAddress = email.split("?")[1].split("=")[1].split("&")[0].replace("%40","@")
       // set to local storage and input value
-      console.log(emailAddress)
       window.localStorage.setItem("email", emailAddress);
       (document.getElementById("email") as HTMLInputElement).value = emailAddress
       checkEmail(emailAddress,2)
@@ -130,7 +126,6 @@ const Authentication = () => {
     try {
       const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${key}`);
       const obj = await res.json();
-      console.log(obj)
       // var obj = JSON.parse(data);
       let lat =  obj.results[0].geometry.location.lat;
       let lng =  obj.results[0].geometry.location.lng; 
@@ -147,8 +142,6 @@ const Authentication = () => {
         lat: obj.results[0].geometry.location.lat,
         lng: obj.results[0].geometry.location.lng
       });
-      console.log(userInformation)
-      console.log(image)
       addDoc(dbInstance, userInformation).then(async()=>{
           await error(3, false)
           router.replace('/')
@@ -194,12 +187,10 @@ const Authentication = () => {
     
    async function next(e: any, n: number) {
     e.preventDefault();
-    console.log(n);
     switch (n) {
       case 2:
         const email = getInputVal("email");
         window.localStorage.setItem("email", email)
-        console.log(window.localStorage.getItem("email"))
         //check email then proceed to call below function
         checkEmail(email,n) ;
         break;
@@ -342,8 +333,5 @@ const actionCodeSettings = {
   handleCodeInApp: true
 };
 
-function submitToFireBase() {
-  console.log("submitting to firebase");
-}
 
 export default Authentication;

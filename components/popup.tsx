@@ -126,7 +126,6 @@ const Popup = ({ dataType, handleClick}: props,) => {
             <span
               className="material-icons"
               onClick={() => {
-                console.log(!showPop);
                 display(!showPop);
               }}
             >
@@ -153,7 +152,6 @@ const Popup = ({ dataType, handleClick}: props,) => {
             <span
               className="material-icons"
               onClick={() => {
-                console.log(!showPop);
                 display(!showPop);
               }}
             >
@@ -167,13 +165,19 @@ const Popup = ({ dataType, handleClick}: props,) => {
         </div>
       )}
       {dataType == popups.information && !showPop && (
-        <div onClick={() => display(true)}>
-          <button>open</button>
+        <div onClick={() => display(true)} className={styles.index_bottomRight}>
+          <button>
+          <span className="material-icons">info
+</span>
+          </button>
         </div>
       )}
       {dataType == popups.team && !showPop && (
-        <div onClick={() => display(true)}>
-          <button>open</button>
+        <div onClick={() => display(true)} className={` ${styles.index_bottomRight} ${styles.index_bottomRight_more}`}>
+          <button>
+          <span className="material-icons">groups
+</span>
+          </button>
         </div>
       )}
     </div>

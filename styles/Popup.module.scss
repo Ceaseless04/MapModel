@@ -93,7 +93,32 @@ left: 0;
         right: 80px;
         top: 10px;
     }
-    &_bottomLeft{
+    &_bottomRight{
+      right: 80px;
+      bottom: 2.2%;
+      position: fixed;
+        &_more{
+            right: 160px;
+        }
+        button{
+          background-color: rgb(218, 218, 218);
+    font-size: 18px;
+    height: 50px;
+    
+    aspect-ratio: 1/1;
+    outline: none;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    span{
+      color: rgb(88, 88, 88);
+      font-size: 35px;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+        }
 
     }
 }
