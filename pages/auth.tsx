@@ -11,8 +11,9 @@ import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, upl
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
-import { useRouter } from "next/router";
+import  useRouter   from "next/router" ;
 import { Value } from "sass";
+import {key }  from  "../.env/firebase"
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -32,7 +33,7 @@ const Authentication = () => {
     lat: null,
     lng: null
   });
-  const router = useRouter()
+  const router = useRouter
   async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
@@ -57,7 +58,7 @@ const Authentication = () => {
     const uploadRef = ref(storage, "storage/"+image?.name);
     
     const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
-    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL) => {
+    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL: any) => {
         
           console.log('File available at', downloadURL);
           changeUrl(downloadURL)
@@ -106,7 +107,7 @@ const Authentication = () => {
     }
     else{
       change(n)
-       querySnapshot.forEach((doc) => {
+       querySnapshot.forEach((doc: any) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
@@ -127,7 +128,7 @@ const Authentication = () => {
 },[]);
   const getLatLng = async (placeId: string) => {
     try {
-      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4`);
+      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${key}`);
       const obj = await res.json();
       console.log(obj)
       // var obj = JSON.parse(data);
@@ -141,7 +142,7 @@ const Authentication = () => {
         name: getInputVal("name"),
         major: getInputVal("major"),
         city: location?.label.split(',').slice(0,-1),
-        country: location?.label.split(',').slice(-1),
+        country: obj.results[0].formatted_address.split(',').slice(-1).join().trim(),
         picture: imageUrl,
         lat: obj.results[0].geometry.location.lat,
         lng: obj.results[0].geometry.location.lng
@@ -207,7 +208,7 @@ const Authentication = () => {
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
         userInformation.city = location?.label.split(',').slice(0,-1);
-        userInformation.country = location?.label.split(',').slice(-1);
+        userInformation.country = location?.label.split(',').slice(-1).join().trim();
         userInformation.email = getInputVal("email");
 
         //If statements to call for errors if null -> Kris (note by cami)
@@ -252,7 +253,7 @@ const Authentication = () => {
       <form className={styles.center_flex}>
         {/* step one: email input */}
         <div className={pageNo == 1 ? styles.form : global.hidden}>
-          <h1>Type your student email</h1>
+          <h1 className={styles.prompt_email }>Type your student email</h1>
 
           <input
             type="text"
@@ -266,17 +267,22 @@ const Authentication = () => {
         </div>
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
-          <h1>add information</h1>
-          <p>Name</p>
-          <input type="text" placeholder="Name" name="name" id="name"></input>
-          <p>Major</p>
-          <select name="major" id="major">
-            {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
+          <h1>Add information</h1>
+
+          <p className={styles.prompts_Info}>Name</p>
+          <input className={styles.nameInput} type="text" placeholder="Name" name="name" id="name"></input>
+
+          <p className={styles.prompts_Info}>Major</p>
+
+          <select className={styles.selectMajor} name="major" id="major" >
+            {data["MAIN"].map((val)=><option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
-        <p>Type your city of origin below</p>
+
+        <p className={styles.prompts_Info} >Type your city of origin below</p>
+
         <div className={styles.input}>
             <GooglePlacesAutocomplete
-                apiKey="AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4"
+                apiKey={key}
                 selectProps={{
                   location,
                   onChange: selectLocation,
@@ -302,7 +308,7 @@ const Authentication = () => {
                 }}
               />
         </div>
-          <p>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
+          <p className={styles.error_display}>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
           <p>City of Origin: <strong>{location?.label.split(',').slice(0,-1)}</strong></p>
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 1)}> back </button>
@@ -314,7 +320,7 @@ const Authentication = () => {
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>Upload your photo</h1>
           {/* display string base64 for url as an image and fit image with good resolution */}
-           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+           <img src={preview} style={{objectFit:"contain"}} width='20%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
               <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
               if (File){

@@ -2,14 +2,12 @@ import styles from '../styles/Marker.module.scss'
 import Image from 'next/image'
 type Props = {
     // send object from firebase 
-    pictureUrl: string;
-    name: string;
-    uid: string;
+   
     userObject: any;
     selectMarker:any
 }
 
-const Marker=({pictureUrl,uid,name, userObject, selectMarker}:Props )=>{
+const Marker=({ userObject, selectMarker}:Props )=>{
     return(
         // <div className={styles.marker} onClick={event => selectMarker(userObject)}>
         //     <Image

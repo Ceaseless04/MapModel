@@ -1,24 +1,36 @@
 import Image from 'next/image'
 import { teamModel } from '../models/teamModel'
 import styles from '../styles/miniProfile.module.scss'
+import stylex from '../styles/helpComponent.module.scss'
 
 type Props={
     member: teamModel
 }
  const MiniProfile=({member}:Props) => {
     return(
-        <div>
+        <div  className={stylex.container}>
              <Image
             // loader={myLoader}
-            className={styles.profile__icon}
+            className={stylex.help__icon}
             src={member.imageUrl}
             alt={"Picture of " + member.name}
-            width={120}
-            height={120} 
+            width={150}
+            height={150} 
             />
             <p>{member.name}</p>
             <p>{member.title}</p>
-            <button>View Information</button>
+            <p>{member.summary}</p>
+            <div className={styles.social_icons}>
+            <a href={member.github || ""}>
+            <button>G</button>
+            </a>
+            <a href={member.linkedin || ""}>
+            <button>L</button>
+            </a>
+            <a href={member.instagram || ""}><button>I</button></a>
+            </div>
+            
+            
         </div>
     )
 }

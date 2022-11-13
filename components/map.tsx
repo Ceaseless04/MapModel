@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 // import {MarkerF} from '@react-google-maps/api'
 import { styleMap } from "../modules/mapStyle";
 import Marker from "./marker";
+import { key } from '../.env/firebase'
 type Props = {
     markerData: any
     sendMarker:any
@@ -29,7 +30,7 @@ const marker = (userData: any) => {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4" }}
+        bootstrapURLKeys={{ key: key }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         options={{
@@ -38,12 +39,10 @@ const marker = (userData: any) => {
       >
         {/* <MapMarker text="My Marker" /> */}
         {
-       markerData.map((el:any) => 
+       markerData.map((el:any, idx:any) => 
        <Marker 
+       key={idx}
        {...location(el.lat,el.lng)}
-       pictureUrl="" 
-       name="leon"
-       uid="uid"
        userObject={el}
        selectMarker={marker}
        ></Marker>)
