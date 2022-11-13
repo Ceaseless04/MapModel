@@ -81,7 +81,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
               }}
             /> */}
             <p>Countries</p>
-            <select value={location} name="country" id="country"   onChange={(e)=>{
+            <select className={styles.select} value={location} name="country" id="country"   onChange={(e)=>{
                     selectLocation(e.target.value as any);
                   }
                 }>
@@ -95,7 +95,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
               }
             </select>
             <p>Major</p>
-            <select value={major} name="major" id="major" onChange={(e)=>{
+            <select className={styles.select} value={major} name="major" id="major" onChange={(e)=>{
                     changeMajor(e.target.value as any);
                   }}>
               {data["MAIN"].map((val) => (
