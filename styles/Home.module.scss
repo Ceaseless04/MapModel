@@ -1,3 +1,5 @@
+@import './Global.module.scss';
+
 .parent{
     width: 100vw;
     height: 100vh;
@@ -33,4 +35,29 @@
     width: 100vw;
     z-index: 0
 }
-
+.addPerson{
+  width: 20vw;
+    display: flex;
+    bottom: 20px;
+    position: fixed;
+    left: 20px;
+    justify-content: center;
+    z-index: 1;
+    align-items: center;
+    border-radius: 50px;
+    border: 0px;
+    background-color: #58827F;
+    padding: 5px;
+    &:hover{
+      cursor: pointer;
+      background-color: #3f5e5c;
+    }
+  span{
+    @include fontSize(black,$sm);
+   
+  }
+  p{
+    @include fontSize(black,$sm);
+   
+  }
+}

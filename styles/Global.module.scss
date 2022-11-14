@@ -52,3 +52,95 @@ Poppins light for consent page*/
     cursor: pointer;
   }
 }
+$phone: 600px;
+$tablet: 900px;
+$large: 1200px;
+$extra_large: 1800px;
+
+$sm:"small";
+$md:"med";
+$lg: "large";
+
+$primary: white;
+$secondary: rgb(8 12 31);
+
+@mixin phone-only {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+@mixin phone-up {
+  @media (min-width: $phone) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+@mixin tablet-down {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+@mixin desktop-up {
+  @media (min-width: $large) {
+    @content;
+  }
+}
+@mixin large-screen {
+  @media (min-width: $extra_large) {
+    @content;
+  }
+}
+@mixin fontSize($color,$size: $sm) {
+    color: $color;
+  @if $size == $sm {
+    @include tablet-down{
+        font-size: 12px;
+    }
+    @include tablet-up{
+        font-size: 18px;
+    }
+    @include large-screen{
+        font-size: 23px;
+    }
+  }
+  @if $size == $md {
+    @include tablet-down{
+        font-size: 16px;
+    }
+    @include tablet-up{
+        font-size: 22px;
+    }
+    @include large-screen{
+        font-size: 27px;
+    }
+  }
+  @if $size == $lg {
+    @include tablet-down{
+        font-size: 30px;
+    }
+    @include tablet-up{
+        font-size: 45px;
+    }
+    @include large-screen{
+        font-size: 45px;
+    }
+  }
+}
+@mixin centerFlex{
+  text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+@mixin two_grid{
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+@mixin full-bleed{
+  width: 100vh;
+  height: 100vw;
+}
