@@ -68,9 +68,14 @@
 }
 
 .clear{
-  background: rgb(235, 174, 86, 0.4);
   margin-top: 4%;
   border-radius: 5px;
+  border:none;
+  box-shadow: 2px 2px 2px #C58A67;
+  background: #EDE5DD;
+  color: rgb(4, 4, 4);
+  font-weight:lighter;
+  background: rgb(235, 174, 86, 50%);
 }
 
 
@@ -140,4 +145,10 @@
         }
 
     }
+}
+
+.select{
+  background-color: white;
+  border:1px double rgb(235, 174, 86, 80%);
+  border-radius: 5px;
 }
