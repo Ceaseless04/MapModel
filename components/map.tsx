@@ -25,6 +25,8 @@ const MapComponent=({ markerData, sendMarker}:Props )=>{
     const bounds = new window.google.maps.LatLngBounds(defaultProps.center);
     markerData.forEach((position: any) => bounds.extend({lat: position.lat, lng: position.lng}));
     map.fitBounds(bounds);
+    // map.setZoom(defaultProps.zoom)
+    map.setZoom(map.getZoom() + 2);
 
     setMap(map)
   }, [])
@@ -53,10 +55,7 @@ const marker = (userData: any) => {
     <div style={containerStyle}>
       { isLoaded && <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{
-          lat: -3.745,
-          lng: -38.523
-        }}
+        center={defaultProps.center}
         zoom={defaultProps.zoom}
         onLoad={onLoad}
         onUnmount={onUnmount}
