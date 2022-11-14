@@ -18,13 +18,13 @@ export const teamMembers=[
         imageUrl: "https://firebasestorage.googleapis.com/v0/b/mapme-66db2.appspot.com/o/storage%2FIMG_6686.jpeg?alt=media&token=a41ea342-739f-4577-a437-a750f5881088"
     },
     {
-        name: 'Leon Kipkoech',
-        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-        title: "machine",
-        github: "leonkoech",
-        linkedin: "leonkoech",
-        instagram: "leonkoech",
-        imageUrl: "https://firebasestorage.googleapis.com/v0/b/mapme-66db2.appspot.com/o/storage%2F915c859e580ed78052cc9615fe08a36d.jpg?alt=media&token=0fd064b9-2c2c-4b29-8b5a-8dbbcb522d85"
+        name: 'Coral Miniel',
+        summary: "Hey There! I was the project manager and front-end styling for this project. I introduced the idea of the project. I organized the team, kept track of our progress, and made sure we were hitting our deadlines and created the prototype of the project. I also did the UX UI design work that went into making sure users had an easy time navigating through the web application. I worked with SCSS stylesheets to make sure user form looked good as well as verify pages.",
+        title: "Project Manager",
+        github: "https://github.com/cmini004",
+        linkedin: "https://www.linkedin.com/in/coral-miniel-17329218b/",
+        instagram: "https://www.instagram.com/therealcoralm/?hl=en",
+        imageUrl: "https://firebasestorage.googleapis.com/v0/b/mapme-66db2.appspot.com/o/storage%2FWhatsApp%20Image%202022-11-14%20at%2012.38.00%20PM.jpeg?alt=media&token=42e6494d-5fcc-41af-86b2-8bf6ddfabf4b"
     },
     {
         name: 'Kristian Vazquez',
