@@ -28,7 +28,7 @@ export const teamMembers=[
     },
     {
         name: 'Kristian Vazquez',
-        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        summary: "Hi! For the website, I developed a pattern for the required email input when users are creating their accounts. Leon, Cami, and I programmed and set up the firebase to receive and display profile pictures uploaded by the user, which are illustrated on a marker when profile is created. Lastly, I styled the how to steps with friendly instructions for new users to be able to create their accounts without hassle.",
         title: "Full-Stack Developer",
         github: "https://github.com/Ceaseless04",
         linkedin: "https://www.linkedin.com/in/kristian-vazquez-0329b4244/",
