@@ -12,7 +12,7 @@
     
 
     left: 70%;
-    transform: translateX(-40vw);
+    transform: translateX(-45vw);
     background: #ED8476;
     text-decoration-style: dashed;
     
@@ -24,15 +24,16 @@
         font-size: 20px;
     }
     &__error{
-        color: rgb(236, 45, 27);
-        background: rgb(241, 187, 187);
-        outline: 1.5px dashed rgb(255, 7, 7);
+        color: white;
+        background: #EB6856;
+        outline: 2px double rgb(255, 7, 7);
     }
     &__success{
         color: rgb(121, 236, 27);
         background: rgb(204, 241, 187);
-        outline: 1.5px dashed rgb(127, 255, 7);
+        outline: 1.5px double rgb(127, 255, 7);
     }
+
 
 }
 .hidden{
