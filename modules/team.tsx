@@ -19,7 +19,7 @@ export const teamMembers=[
     },
     {
         name: 'Coral Miniel',
-        summary: "Hey There! I was the project manager and front-end styling for this project. I introduced the idea of the project. I organized the team, kept track of our progress, and made sure we were hitting our deadlines. I also did the UX UI design work that went into making sure users had an easy time navigating through the web application. I worked with SCSS stylesheets to make sure user form looked good as well as verify pages.",
+        summary: "Hey There! I was the project manager and front-end styling for this project. I introduced the idea of the project. I organized the team, kept track of our progress, and made sure we were hitting our deadlines and created the prototype of the project. I also did the UX UI design work that went into making sure users had an easy time navigating through the web application. I worked with SCSS stylesheets to make sure user form looked good as well as verify pages.",
         title: "Project Manager",
         github: "https://github.com/cmini004",
         linkedin: "https://www.linkedin.com/in/coral-miniel-17329218b/",
