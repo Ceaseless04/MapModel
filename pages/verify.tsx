@@ -5,12 +5,12 @@ import { firestore } from '../firebase';
 import { auth } from "../.env/firebase";
 import styles  from "../styles/Verify.module.scss"
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const dbInstance = collection(firestore, 'emails');
 
-const verify: NextPage = () => {
-    let [email, change] = React.useState(null as any);
+const Verify: NextPage = () => {
+    let [email, change] = useState(null as any);
 
     useEffect(()=>{
         if (typeof window !== "undefined") {
@@ -44,7 +44,7 @@ const verify: NextPage = () => {
         <div className={styles.parent}>
             <div>
                 redirecting...
-                if page doesn't redirect click here 
+                if page does not redirect click here 
                 <br></br>
                {/* <Link href="/auth/"> */}
                 <button onClick={() => router.replace('/auth?email='+email.replace("@","%40"))}>
@@ -55,4 +55,4 @@ const verify: NextPage = () => {
         </div>
     );
 }
-export default verify
+export default Verify

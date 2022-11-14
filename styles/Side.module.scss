@@ -14,13 +14,13 @@
   }
 }
 .open {
-  width: 40vw;
+  margin-left:0;
   transition-duration: 1s;
   transition-property: width;
   background-color: #1f8cd4;
 }
 .close {
-  width: 5vw;
+  margin-left:-25vw;
   // backdrop-filter: blur(10px);
   transition-duration: 1s;
   transition-property: width;
