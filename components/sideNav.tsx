@@ -3,6 +3,7 @@ import  styles  from '../styles/Side.module.scss'
 import globals from '../styles/Global.module.scss'
 import home from '../styles/Home.module.scss'
 import { user } from '../models/userInformation';
+import { SERVER_PROPS_ID } from 'next/dist/shared/lib/constants';
 // import 'material-icons/iconfont/material-icons.css';
 
 type props = {
@@ -13,11 +14,8 @@ const SideNav=({userData}:props)=>{
     let [state,open]=React.useState(!(Object.getPrototypeOf(userData) === Object.prototype))
     let hasData = Boolean(Object.keys(userData).length)
     function menu(){
-        // if userData has data
-        
-            open(state=!state)
-        
-        
+        // returned to original state => Kris
+        open(state=!state)
     }
 
     return(
