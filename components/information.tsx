@@ -31,7 +31,9 @@ const InformationComponent=({page}:Props)=>{
                 }
                 { 
             page === popups.information &&
-                <p> MapMe is a website in which users are able to create a profile with their names, major, city, and country. Users are then able to see their own profile and other users profile. Feeling adventorous? Start by following the how to steps and explore your peers cultures!   
+                <p> MapMe is a website in which users are able to create a profile with their names, major, city, and country. 
+                    Users are then able to see their own profile and other users profile. Feeling adventorous? 
+                    Start by following the how to steps and explore your peers cultures!   
                     <br></br>We hope you enjoyed the experience!</p>
 }
               
