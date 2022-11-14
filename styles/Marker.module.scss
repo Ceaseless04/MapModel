@@ -1,5 +1,5 @@
 $marker-color: #F2D2A4;
-
+$hover-color: #dd9e45;
 .marker {
     position: absolute;
     top: 40%;
@@ -15,5 +15,10 @@ $marker-color: #F2D2A4;
     &__img{
         transform: rotate(45deg);
         border-radius: 50%;
+    }
+    &:hover{
+        cursor: pointer;
+        border: 4px solid  $hover-color;
+    background-color: $hover-color;
     }
   }
