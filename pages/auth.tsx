@@ -60,7 +60,6 @@ const Authentication = () => {
     const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
     const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL: any) => {
         
-          console.log('File available at', downloadURL);
           changeUrl(downloadURL)
           userInformation.picture = downloadURL;
           return downloadURL;
@@ -86,7 +85,6 @@ const Authentication = () => {
       .catch(async (error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         // or whichever error will appear here
          await error(1);
       });
@@ -108,8 +106,7 @@ const Authentication = () => {
     else{
       change(n)
        querySnapshot.forEach((doc: any) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      // doc.data() is never undefined for query doc snaps
     });
     }
    
@@ -119,7 +116,6 @@ const Authentication = () => {
     if(email.split("?").length>1){
       let emailAddress = email.split("?")[1].split("=")[1].split("&")[0].replace("%40","@")
       // set to local storage and input value
-      console.log(emailAddress)
       window.localStorage.setItem("email", emailAddress);
       (document.getElementById("email") as HTMLInputElement).value = emailAddress
       checkEmail(emailAddress,2)
@@ -130,7 +126,6 @@ const Authentication = () => {
     try {
       const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${key}`);
       const obj = await res.json();
-      console.log(obj)
       // var obj = JSON.parse(data);
       let lat =  obj.results[0].geometry.location.lat;
       let lng =  obj.results[0].geometry.location.lng; 
@@ -147,8 +142,6 @@ const Authentication = () => {
         lat: obj.results[0].geometry.location.lat,
         lng: obj.results[0].geometry.location.lng
       });
-      console.log(userInformation)
-      console.log(image)
       addDoc(dbInstance, userInformation).then(async()=>{
           await error(3, false)
           router.replace('/')
@@ -194,12 +187,10 @@ const Authentication = () => {
     
    async function next(e: any, n: number) {
     e.preventDefault();
-    console.log(n);
     switch (n) {
       case 2:
         const email = getInputVal("email");
         window.localStorage.setItem("email", email)
-        console.log(window.localStorage.getItem("email"))
         //check email then proceed to call below function
         checkEmail(email,n) ;
         break;
@@ -210,6 +201,8 @@ const Authentication = () => {
         userInformation.city = location?.label.split(',').slice(0,-1);
         userInformation.country = location?.label.split(',').slice(-1).join().trim();
         userInformation.email = getInputVal("email");
+
+        //If statements to call for errors if null -> Kris (note by cami)
         if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
             
             if(userInformation.city==""){
@@ -243,7 +236,8 @@ const Authentication = () => {
           window.localStorage.clear()
         }
         else{
-          await error(8)
+          //changed error 8 to error 11 (Cami)
+          await error(11)
         }
        
         break;
@@ -262,7 +256,7 @@ const Authentication = () => {
       <form className={styles.center_flex}>
         {/* step one: email input */}
         <div className={pageNo == 1 ? styles.form : global.hidden}>
-          <h1>Type your student email</h1>
+          <h1 className={styles.prompt_email }>Type your student email</h1>
 
           <input
             type="text"
@@ -276,14 +270,19 @@ const Authentication = () => {
         </div>
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
-          <h1>add information</h1>
-          <p>Name</p>
-          <input type="text" placeholder="Name" name="name" id="name"></input>
-          <p>Major</p>
-          <select name="major" id="major">
+          <h1>Add information</h1>
+
+          <p className={styles.prompts_Info}>Name</p>
+          <input className={styles.nameInput} type="text" placeholder="Name" name="name" id="name"></input>
+
+          <p className={styles.prompts_Info}>Major</p>
+
+          <select className={styles.selectMajor} name="major" id="major" >
             {data["MAIN"].map((val)=><option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
-        <p>Type your city of origin below</p>
+
+        <p className={styles.prompts_Info} >Type your city of origin below</p>
+
         <div className={styles.input}>
             <GooglePlacesAutocomplete
                 apiKey={key}
@@ -312,7 +311,7 @@ const Authentication = () => {
                 }}
               />
         </div>
-          <p>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
+          <p className={styles.error_display}>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
           <p>City of Origin: <strong>{location?.label.split(',').slice(0,-1)}</strong></p>
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 1)}> back </button>
@@ -324,7 +323,7 @@ const Authentication = () => {
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>Upload your photo</h1>
           {/* display string base64 for url as an image and fit image with good resolution */}
-           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+           <img src={preview} style={{objectFit:"contain"}} width='20%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
               <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
               if (File){
@@ -354,8 +353,5 @@ const actionCodeSettings = {
   handleCodeInApp: true
 };
 
-function submitToFireBase() {
-  console.log("submitting to firebase");
-}
 
 export default Authentication;

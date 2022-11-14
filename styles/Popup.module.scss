@@ -1,3 +1,4 @@
+// Meet the team styling
 .parent {
   height: 100vh;
   width: 100vw;
@@ -5,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-left: 0; 
+  left: 0; 
    top: 0; 
   /* background-color: white; */
   backdrop-filter: blur(10px);
@@ -22,42 +23,62 @@ left: 0;
   }
 }
 
+
 .filter {
   &_button {
-    background-color: #c58a67;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #EBAE56;
+    background-color: #EDE5DD;
     font-size: 18px;
+    font-weight: bolder;
     height: 40px;
     display: flex;
+    border: none;
     width: 6vw;
-    outline: none;
-    border: 0px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: left;
     &_long{
-        width:31.5vw;
+        translate: 91.5%;
+        width:54%;
     }
     // .mat_icon{
 
     // }
   }
   &_container {
-    width: 30vw;
-    background-color: #c58a67;
+    box-shadow: 2px 2px 2px #EBAE56;
+    width: 50%;
+    border-radius: 10px;
+    background-color: #EDE5DD;
     overflow: hidden;
+    margin-top: 0.5%;
     select {
-      height: 60px;
+      height: 30px;
       width: 100%;
       option {
-        height: 60px;
+        height: 40px;
         width: 29vw;
       }
     }
     option {
-      height: 60px;
+      height: 40px;
       width: 29vw;
     }
   }
 }
+
+.clear{
+  margin-top: 4%;
+  border-radius: 5px;
+  border:none;
+  box-shadow: 2px 2px 2px #C58A67;
+  background: #EDE5DD;
+  color: rgb(4, 4, 4);
+  font-weight:lighter;
+  background: rgb(235, 174, 86, 50%);
+}
+
+
 .inherit{
     width: 100%;
     height: inherit;
@@ -68,11 +89,14 @@ left: 0;
   width: 0;
   transition-duration: 3s;
   transition-property: height;
+  translate: 90%;
+
 }
 .openheight {
   height: auto;
   padding: 15px;
   transition-duration: 3s;
+  translate: 90%;
   transition-property: height;
 }
 
@@ -93,7 +117,48 @@ left: 0;
         right: 80px;
         top: 10px;
     }
-    &_bottomLeft{
+    &_bottomRight{
+      right: 80px;
+      bottom: 2.2%;
+      position: fixed;
+        &_more{
+            right: 160px;
+        }
+        button{
+          background-color: #4097e2;
+          box-shadow: 1px 1px 6px white;
+          border-radius: 20%;
+          font-size: 18px;
+          height: 50px;
+    
+          aspect-ratio: 1/1;
+          outline: none;
+          border: 0px;
+          display: flex;
+          align-items: center;
+          justify-self: center;
+          span{
+            color: white;
+            
+            font-size: 35px;
+          }
+
+          &:hover{
+            cursor: pointer;
+            background-color: white;
+            box-shadow: 1px 1px 6px black;
+            span{
+              color:#4097e2;
+            }
+            
+          }
+              }
 
     }
+}
+
+.select{
+  background-color: white;
+  border:1px double rgb(235, 174, 86, 80%);
+  border-radius: 5px;
 }

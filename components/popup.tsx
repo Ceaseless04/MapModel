@@ -53,7 +53,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
                 : `${styles.filter_container} ${styles.closeheight}`
             }
           >
-            <p>country</p>
+            {/* <p>country</p> */}
             {/* <GooglePlacesAutocomplete
               apiKey= { key }
               selectProps={{
@@ -81,7 +81,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
               }}
             /> */}
             <p>Countries</p>
-            <select value={location} name="country" id="country"   onChange={(e)=>{
+            <select className={styles.select} value={location} name="country" id="country"   onChange={(e)=>{
                     selectLocation(e.target.value as any);
                   }
                 }>
@@ -95,7 +95,7 @@ const Popup = ({ dataType, handleClick}: props,) => {
               }
             </select>
             <p>Major</p>
-            <select value={major} name="major" id="major" onChange={(e)=>{
+            <select className={styles.select} value={major} name="major" id="major" onChange={(e)=>{
                     changeMajor(e.target.value as any);
                   }}>
               {data["MAIN"].map((val) => (
@@ -104,7 +104,8 @@ const Popup = ({ dataType, handleClick}: props,) => {
                 </option>
               ))}
             </select>
-            <button onClick={()=>{
+            <button  className={`${styles.clear}`} onClick={()=>{
+              
           changeMajor('')
           selectLocation('')  
           }
@@ -126,7 +127,6 @@ const Popup = ({ dataType, handleClick}: props,) => {
             <span
               className="material-icons"
               onClick={() => {
-                console.log(!showPop);
                 display(!showPop);
               }}
             >
@@ -153,7 +153,6 @@ const Popup = ({ dataType, handleClick}: props,) => {
             <span
               className="material-icons"
               onClick={() => {
-                console.log(!showPop);
                 display(!showPop);
               }}
             >
@@ -167,13 +166,19 @@ const Popup = ({ dataType, handleClick}: props,) => {
         </div>
       )}
       {dataType == popups.information && !showPop && (
-        <div onClick={() => display(true)}>
-          <button>open</button>
+        <div onClick={() => display(true)} className={styles.index_bottomRight}>
+          <button>
+          <span className="material-icons">info
+</span>
+          </button>
         </div>
       )}
       {dataType == popups.team && !showPop && (
-        <div onClick={() => display(true)}>
-          <button>open</button>
+        <div onClick={() => display(true)} className={` ${styles.index_bottomRight} ${styles.index_bottomRight_more}`}>
+          <button>
+          <span className="material-icons">groups
+</span>
+          </button>
         </div>
       )}
     </div>
