@@ -7,11 +7,13 @@ import { auth, db } from "../.env/firebase";
 import * as firebase from "firebase/compat/app";
 import data from "../public/Major_Names.json";
 import Error from "../components/error";
-
+import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, uploadString } from "firebase/storage";
 import { app, firestore } from '../firebase';
 import { collection, addDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import GooglePlacesAutocomplete, { getLatLng } from 'react-google-places-autocomplete';
-import { useRouter } from "next/router";
+import  useRouter   from "next/router" ;
+import { Value } from "sass";
+import {key }  from  "../.env/firebase"
 const dbInstance = collection(firestore, 'users');
 const dbEmailInstance = collection(firestore, 'emails');
 
@@ -19,6 +21,7 @@ const dbEmailInstance = collection(firestore, 'emails');
 const Authentication = () => {
   let [err, setError] = React.useState({ active: false, code: 0 , error: true});
   let [pageNo, change] = React.useState(1);
+  let [imageUrl, changeUrl] = React.useState("");
   let [location, selectLocation] = React.useState(null as any)
   let [userInformation, addInfo] = React.useState({
     email: "",
@@ -30,7 +33,7 @@ const Authentication = () => {
     lat: null,
     lng: null
   });
-  const router = useRouter()
+  const router = useRouter
   async function checkEmail(email: string,n:number) {
     // if email tests pass submit it to firebase
     // return submitEmail(email,n);
@@ -51,6 +54,20 @@ const Authentication = () => {
       setError({ active: err.active, code: code, error:isError });
     }
   }
+   async function uploadFile(): Promise<string>{
+    const uploadRef = ref(storage, "storage/"+image?.name);
+    
+    const uploadTask =  await uploadBytesResumable(uploadRef, image as any)
+    const imageUrl = await getDownloadURL(uploadTask.ref).then((downloadURL: any) => {
+        
+          changeUrl(downloadURL)
+          userInformation.picture = downloadURL;
+          return downloadURL;
+        }).catch(async (er)=>{
+          await error(2)
+        });
+  return imageUrl!
+  }
   function submitEmail(email: string,n:number): boolean {
     // const auth = getAuth(app);
     // change(n)
@@ -68,7 +85,6 @@ const Authentication = () => {
       .catch(async (error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         // or whichever error will appear here
          await error(1);
       });
@@ -89,9 +105,8 @@ const Authentication = () => {
     }
     else{
       change(n)
-       querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+       querySnapshot.forEach((doc: any) => {
+      // doc.data() is never undefined for query doc snaps
     });
     }
    
@@ -101,7 +116,6 @@ const Authentication = () => {
     if(email.split("?").length>1){
       let emailAddress = email.split("?")[1].split("=")[1].split("&")[0].replace("%40","@")
       // set to local storage and input value
-      console.log(emailAddress)
       window.localStorage.setItem("email", emailAddress);
       (document.getElementById("email") as HTMLInputElement).value = emailAddress
       checkEmail(emailAddress,2)
@@ -110,24 +124,24 @@ const Authentication = () => {
 },[]);
   const getLatLng = async (placeId: string) => {
     try {
-      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4`);
+      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${key}`);
       const obj = await res.json();
       // var obj = JSON.parse(data);
       let lat =  obj.results[0].geometry.location.lat;
       let lng =  obj.results[0].geometry.location.lng; 
-      
-      addInfo({
+      userInformation.lat = lat;
+      userInformation.lng = lng;
+      await uploadFile();
+      await addInfo({
         email:  window.localStorage.getItem("email") || getInputVal("email"),
         name: getInputVal("name"),
         major: getInputVal("major"),
-        country: getInputVal("country"),
-        city: getInputVal("city"),
-        picture: "",
-        lat: lat,
-        lng: lng
+        city: location?.label.split(',').slice(0,-1),
+        country: obj.results[0].formatted_address.split(',').slice(-1).join().trim(),
+        picture: imageUrl,
+        lat: obj.results[0].geometry.location.lat,
+        lng: obj.results[0].geometry.location.lng
       });
-      console.log(userInformation)
-      console.log(image)
       addDoc(dbInstance, userInformation).then(async()=>{
           await error(3, false)
           router.replace('/')
@@ -160,14 +174,23 @@ const Authentication = () => {
     }
   },[image])
 
+
+    {/*Needed to work with firebase storage (sending images)*/}
+    const storage = getStorage();
+    const storageRef = ref(storage, "storage");
+    const imagesRef = storageRef;
+    const message1 = "input-storage";
+   // uploadString(storageRef, message1).then((snapshot) => {
+        //   console.log(snapshot)
+        //   console.log("Successful upload!");
+        // });
+    
    async function next(e: any, n: number) {
     e.preventDefault();
-    console.log(n);
     switch (n) {
       case 2:
         const email = getInputVal("email");
         window.localStorage.setItem("email", email)
-        console.log(window.localStorage.getItem("email"))
         //check email then proceed to call below function
         checkEmail(email,n) ;
         break;
@@ -175,13 +198,36 @@ const Authentication = () => {
       // add if user information is null - use kris function coral
         userInformation.name = getInputVal("name");
         userInformation.major = getInputVal("major");
-        userInformation.country = getInputVal("country");
-        userInformation.city = getInputVal("city");
-        change(n);
+        userInformation.city = location?.label.split(',').slice(0,-1);
+        userInformation.country = location?.label.split(',').slice(-1).join().trim();
+        userInformation.email = getInputVal("email");
+
+        //If statements to call for errors if null -> Kris (note by cami)
+        if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
+            
+            if(userInformation.city==""){
+              await error(7)
+            }
+            else{
+              await error(4);
+            }
+        }
+        else{
+           change(n);
+        }
+       
         break;
       case 0:
-        await getLatLng(location.value.place_id)
-        window.localStorage.clear()
+        if(image){
+          await getLatLng(location.value.place_id)
+        
+          window.localStorage.clear()
+        }
+        else{
+          //changed error 8 to error 11 (Cami)
+          await error(11)
+        }
+       
         break;
       default:
         change(n);
@@ -195,11 +241,11 @@ const Authentication = () => {
  
   return (
     <div className={global.font}>
-      <form>
+      <form className={styles.center_flex}>
         {/* step one: email input */}
-        di
         <div className={pageNo == 1 ? styles.form : global.hidden}>
-          <h1>Type your student email</h1>
+          <h1 className={styles.prompt_email }>Type your student email</h1>
+
           <input
             type="text"
             placeholder="Email"
@@ -212,15 +258,22 @@ const Authentication = () => {
         </div>
         {/* step two: image input */}
         <div className={pageNo == 2 ? styles.form : global.hidden}>
-          <h1>add information</h1>
-          <input type="text" placeholder="Name" name="name" id="name"></input>
-          <select name="major" id="major">
-            {data["MAIN"].map((val)=><option value={val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
+          <h1>Add information</h1>
+
+          <p className={styles.prompts_Info}>Name</p>
+          <input className={styles.nameInput} type="text" placeholder="Name" name="name" id="name"></input>
+
+          <p className={styles.prompts_Info}>Major</p>
+
+          <select className={styles.selectMajor} name="major" id="major" >
+            {data["MAIN"].map((val)=><option value={val['Major Name']=="Select your Major"?"":val['Major Name']} key={val['Major Name']}>{val["Major Name"]}</option>)}
         </select>
-        <p>Type your city of origin below</p>
+
+        <p className={styles.prompts_Info} >Type your city of origin below</p>
+
         <div className={styles.input}>
             <GooglePlacesAutocomplete
-                apiKey="AIzaSyDcjNrNrDamH1BaZ6BtgvWY3ENNx5QXoM4"
+                apiKey={key}
                 selectProps={{
                   location,
                   onChange: selectLocation,
@@ -246,16 +299,8 @@ const Authentication = () => {
                 }}
               />
         </div>
-          
-          <input type="text" placeholder="City" name="city" id="city" value={location?.label.split(',').slice(0,-1)} readOnly></input>
-          <input
-            type="text"
-            placeholder="Country"
-            name="country"
-            id="country"
-            value={location?.label.split(',').slice(-1)} readOnly
-          ></input>
-          {/* submit everything to firebase on this step */}
+          <p className={styles.error_display}>Country Of Origin: <strong>{location?.label.split(',').slice(-1)}</strong></p>
+          <p>City of Origin: <strong>{location?.label.split(',').slice(0,-1)}</strong></p>
           <div  className={styles.bottomBtns}>
             <button className={`${global.button_secondary} ${global.button}`}  onClick={(e) => back(e, 1)}> back </button>
            
@@ -266,7 +311,7 @@ const Authentication = () => {
         <div className={pageNo === 3 ? styles.form : global.hidden}>
           <h1>Upload your photo</h1>
           {/* display string base64 for url as an image and fit image with good resolution */}
-           <img src={preview} style={{objectFit:"contain"}} width='50%' height='50%' />
+           <img src={preview} style={{objectFit:"contain"}} width='20%' height='50%' />
               {/* get url of image when it is selected and/or changed */}
               <input type={"file"} accept="image/*" onChange={async (event)=>{ const file = event.target.files![0]
               if (File){
@@ -295,9 +340,5 @@ const actionCodeSettings = {
   // This must be true.
   handleCodeInApp: true
 };
-
-function submitToFireBase() {
-  console.log("submitting to firebase");
-}
 
 export default Authentication;
