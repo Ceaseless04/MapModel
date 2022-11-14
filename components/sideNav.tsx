@@ -16,12 +16,9 @@ const SideNav=({userData}:props)=>{
     function menu(){
         // did not understand how to implement if/else here :( => (note by Kris)
         // open(state=!state)
-        if(Object.getPrototypeOf(userData) == null) {
-            open(!state)
-        }
-        else {
+        
             open(state=!state)
-        }
+        
     }
 
     return(
