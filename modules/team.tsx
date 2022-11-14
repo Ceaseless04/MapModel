@@ -10,8 +10,8 @@ export const teamMembers=[
     },
     {
         name: 'Cami Copo Amador',
-        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-        title: "machine",
+        summary: "Howdy! In this project, we wanted to deliver a space where you could learn about your peers and share your culture. For this, I worked on some backend (Pst, behind-the-scenes code) and styling, delivering some functionalities, such as your profile picture input and the preview of the same, as well as some designs, such as the buttons you see and use on the main page (map page) among other tasks. We hope you get to enjoy the experience and make great use of this website!",
+        title: "Full-Stack Developer",
         github: "https://github.com/catastrxphic",
         linkedin: "https://www.linkedin.com/in/camicopoa/",
         instagram: "https://www.instagram.com/_catastrophic._/?hl=en",
