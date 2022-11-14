@@ -14,14 +14,8 @@ const SideNav=({userData}:props)=>{
     let [state,open]=React.useState(!(Object.getPrototypeOf(userData) === Object.prototype))
     let hasData = Boolean(Object.keys(userData).length)
     function menu(){
-        // did not understand how to implement if/else here :( => (note by Kris)
-        // open(state=!state)
-        if(Object.getPrototypeOf(userData) == null) {
-            open(!state)
-        }
-        else {
-            open(state=!state)
-        }
+        // returned to original state => Kris
+        open(state=!state)
     }
 
     return(
