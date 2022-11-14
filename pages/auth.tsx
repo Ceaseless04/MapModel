@@ -206,7 +206,19 @@ const Authentication = () => {
         if(userInformation.name=="" || userInformation.major=="" || userInformation.city=="" || userInformation.country=="" || userInformation.email==""){
             
             if(userInformation.city==""){
-              await error(7)
+              await error(12)
+            }
+            else if(userInformation.name=="") {
+              await error(9)
+            }
+            else if(userInformation.major=="") {
+              await error(10)
+            }
+            else if(userInformation.country=="") {
+              await error(11)
+            }
+            else if(userInformation.email=="") {
+              await error(5)
             }
             else{
               await error(4);
