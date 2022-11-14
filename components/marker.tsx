@@ -7,7 +7,7 @@ type Props = {
     selectMarker:any
 }
 
-const Marker=({ userObject, selectMarker}:Props )=>{
+const CustomMarker=({ userObject, selectMarker}:Props )=>{
     return(
         // <div className={styles.marker} onClick={event => selectMarker(userObject)}>
         //     <Image
@@ -32,4 +32,4 @@ const Marker=({ userObject, selectMarker}:Props )=>{
     )
 }
 
-export default Marker;
+export default CustomMarker;
