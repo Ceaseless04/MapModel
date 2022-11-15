@@ -4,3 +4,18 @@
         color: blue;
     }
 }
+.social_icons{
+    
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+
+    button{
+        background-color: transparent;
+        border: 0px;
+        svg{
+            height: 40px;
+            width: 40px;
+        }
+    }
+}

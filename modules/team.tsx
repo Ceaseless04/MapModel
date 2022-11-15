@@ -1,12 +1,12 @@
 export const teamMembers=[
     {
         name: 'Leon Kipkoech',
-        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-        title: "machine",
-        github: "leonkoech",
-        linkedin: "leonkoech",
-        instagram: "leonkoech",
-        imageUrl: "https://firebasestorage.googleapis.com/v0/b/mapme-66db2.appspot.com/o/storage%2F915c859e580ed78052cc9615fe08a36d.jpg?alt=media&token=0fd064b9-2c2c-4b29-8b5a-8dbbcb522d85"
+        summary: "Hello! This is your local MapMe full stack developer/tech lead, nice to meet you :) As the technical lead of the project, I'd like to say that this was an amazing project to learn the google maps platform SDK, git, NextJs and many more things that me and my team were able to add to our skill set. It was tear-jerking at times and really exciting at times, the ordinary life of SDEs yatta! Enjoy this little piece as it comes straight from our hearts(and tears, and smiles) :) ",
+        title: "Full Stack Developer | Technical Lead",
+        github: "https://github.com/leonkoech",
+        linkedin: "https://www.linkedin.com/in/leonkoech/",
+        instagram: "https://www.instagram.com/leonkoech/hl=en",
+        imageUrl: "https://firebasestorage.googleapis.com/v0/b/mapme-66db2.appspot.com/o/storage%2FIMG_1251%20(1).png?alt=media&token=87e37dd5-c1b4-4cbc-bfb7-230b7a0a9a29"
     },
     {
         name: 'Cami Copo Amador',
