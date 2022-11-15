@@ -1,7 +1,7 @@
 export const teamMembers=[
     {
         name: 'Leon Kipkoech',
-        summary: "Hello! This is your local MapFriends full stack developer/tech lead, nice to meet you :) As the technical lead of the project, I'd like to say that this was an amazing project to learn the google maps platform SDK, git, NextJs and many more things that me and my team were able to add to our skill set. It was tear-jerking at times and really exciting at times, the ordinary life of SDEs yatta! Enjoy this little piece as it comes straight from our hearts(and tears and smiles) :) ",
+        summary: "Hello! This is your local MapMe full stack developer/tech lead, nice to meet you :) As the technical lead of the project, I'd like to say that this was an amazing project to learn the google maps platform SDK, git, NextJs and many more things that me and my team were able to add to our skill set. It was tear-jerking at times and really exciting at times, the ordinary life of SDEs yatta! Enjoy this little piece as it comes straight from our hearts(and tears, and smiles) :) ",
         title: "Full Stack Developer | Technical Lead",
         github: "https://github.com/leonkoech",
         linkedin: "https://www.linkedin.com/in/leonkoech/",
